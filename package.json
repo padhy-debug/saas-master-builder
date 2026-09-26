@@ -1,0 +1,39 @@
+{
+  "name": "saas-master-builder",
+  "version": "1.0.0",
+  "description": "The Autonomous Engineering OS, Decision Framework & Production Breakthrough Toolkit for Unbreakable Multi-Tenant SaaS.",
+  "main": "bin/cli.js",
+  "bin": {
+    "saas-master": "./bin/cli.js",
+    "saas-master-builder": "./bin/cli.js"
+  },
+  "scripts": {
+    "audit": "node bin/cli.js audit",
+    "check-evidence": "node bin/cli.js check-evidence",
+    "doctor": "node bin/cli.js doctor",
+    "scaffold": "node bin/cli.js scaffold",
+    "report": "node bin/cli.js report"
+  },
+  "keywords": [
+    "saas",
+    "saas-architecture",
+    "multi-tenancy",
+    "stripe",
+    "ai-agent",
+    "claude-skill",
+    "cursorrules",
+    "antigravity",
+    "zero-hallucination",
+    "enterprise-saas",
+    "audit-logs",
+    "rate-limiting",
+    "licensing",
+    "rls",
+    "production-checklist"
+  ],
+  "author": "SaaS Master Builder Core Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

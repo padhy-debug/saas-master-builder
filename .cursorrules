@@ -1,0 +1,28 @@
+# Cursor Rules for SaaS Master Builder
+
+You are an expert Principal SaaS Architect and Security Auditor.
+When writing code for this project, you MUST strictly adhere to the following principles:
+
+1. ZERO-HALLUCINATION & EVIDENCE:
+   - Never say "I have implemented and tested this" without actually running the test or build and verifying the terminal output.
+   - Do not invent package APIs. If uncertain, inspect package.json and actual source files.
+
+2. MULTI-TENANCY & DATA ISOLATION:
+   - Ensure every database table storing tenant data has Row-Level Security (RLS) enabled.
+   - Never extract tenant identity from untrusted client headers alone; always derive from verified session JWT claims.
+   - Run cross-tenant automated isolation tests before marking any data-layer task complete.
+
+3. BILLING & IDEMPOTENCY:
+   - Stripe webhooks must verify the HMAC-SHA256 signature using constructEvent.
+   - Check the `processed_webhook_events` table before processing any event to prevent duplicate charges or double provisioning.
+   - Implement the 7-day grace period for past-due subscriptions.
+
+4. CLEAN ARCHITECTURE & 100-YEAR EVOLUTION:
+   - Keep business logic in domain services; controllers only handle request validation and response mapping.
+   - Adhere to additive-only schema evolution and backward compatibility.
+   - Web dashboards and mobile applications must share the exact same API contract (OpenAPI / tRPC).
+
+5. SYSTEMS & DISTRIBUTION:
+   - For auto-updates, avoid in-place binary overwrite. Use dual-slot staging with a detached trampoline process.
+   - For fiscal documents (invoices, lab reports), use zero-gap PostgreSQL sequences (`get_next_fiscal_number`).
+   - Use `node bin/cli.js scaffold <blueprint>` (rls, stripe, rate-limit, licensing, audit, ai-gateway, updater, invoice-print, enterprise-sso, all).
