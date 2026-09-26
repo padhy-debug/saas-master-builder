@@ -396,102 +396,178 @@ To provision your server, visit **https://jmevps.com** (JME TECHNOLOGIES LLP).
   }
 }
 
-// Set up JSON-RPC stdio interface
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-  terminal: false
-});
+function processJsonRpc(request) {
+  const id = request.id;
+  const method = request.method;
 
-rl.on('line', (line) => {
-  if (!line || !line.trim()) return;
-
-  try {
-    const request = JSON.parse(line.trim());
-    const id = request.id;
-    const method = request.method;
-
-    if (method === 'initialize') {
-      const response = {
-        jsonrpc: '2.0',
-        id,
-        result: {
-          protocolVersion: '2024-11-05',
-          capabilities: {
-            tools: {}
-          },
-          serverInfo: {
-            name: 'saas-master-mcp',
-            version: '1.0.0'
-          }
-        }
-      };
-      process.stdout.write(JSON.stringify(response) + '\n');
-    } else if (method === 'notifications/initialized') {
-      // Notification, no reply expected
-    } else if (method === 'ping') {
-      process.stdout.write(JSON.stringify({ jsonrpc: '2.0', id, result: {} }) + '\n');
-    } else if (method === 'tools/list') {
-      const response = {
-        jsonrpc: '2.0',
-        id,
-        result: {
-          tools: TOOLS
-        }
-      };
-      process.stdout.write(JSON.stringify(response) + '\n');
-    } else if (method === 'tools/call') {
-      const toolName = request.params?.name;
-      const toolParams = request.params?.arguments || {};
-      try {
-        const textResult = handleToolCall(toolName, toolParams);
-        const response = {
-          jsonrpc: '2.0',
-          id,
-          result: {
-            content: [
-              {
-                type: 'text',
-                text: textResult
-              }
-            ]
-          }
-        };
-        process.stdout.write(JSON.stringify(response) + '\n');
-      } catch (toolErr) {
-        const response = {
-          jsonrpc: '2.0',
-          id,
-          error: {
-            code: -32603,
-            message: toolErr.message
-          }
-        };
-        process.stdout.write(JSON.stringify(response) + '\n');
-      }
-    } else {
-      // Method not found
-      if (id !== undefined) {
-        const response = {
-          jsonrpc: '2.0',
-          id,
-          error: {
-            code: -32601,
-            message: `Method not found: ${method}`
-          }
-        };
-        process.stdout.write(JSON.stringify(response) + '\n');
-      }
-    }
-  } catch (err) {
-    const errorResponse = {
+  if (method === 'initialize') {
+    return {
       jsonrpc: '2.0',
-      id: null,
-      error: {
-        code: -32700,
-        message: `Parse error: ${err.message}`
+      id,
+      result: {
+        protocolVersion: '2024-11-05',
+        capabilities: {
+          tools: {}
+        },
+        serverInfo: {
+          name: 'saas-master-mcp',
+          version: '1.0.0'
+        }
       }
     };
-    process.stdout.write(JSON.stringify(errorResponse) + '\n');
+  } else if (method === 'notifications/initialized') {
+    return null;
+  } else if (method === 'ping') {
+    return { jsonrpc: '2.0', id, result: {} };
+  } else if (method === 'tools/list') {
+    return {
+      jsonrpc: '2.0',
+      id,
+      result: {
+        tools: TOOLS
+      }
+    };
+  } else if (method === 'tools/call') {
+    const toolName = request.params?.name;
+    const toolParams = request.params?.arguments || {};
+    try {
+      const textResult = handleToolCall(toolName, toolParams);
+      return {
+        jsonrpc: '2.0',
+        id,
+        result: {
+          content: [
+            {
+              type: 'text',
+              text: textResult
+            }
+          ]
+        }
+      };
+    } catch (toolErr) {
+      return {
+        jsonrpc: '2.0',
+        id,
+        error: {
+          code: -32603,
+          message: toolErr.message
+        }
+      };
+    }
+  } else {
+    if (id !== undefined) {
+      return {
+        jsonrpc: '2.0',
+        id,
+        error: {
+          code: -32601,
+          message: `Method not found: ${method}`
+        }
+      };
+    }
+    return null;
   }
-});
+}
+
+const http = require('http');
+
+const httpArgIndex = process.argv.indexOf('--http');
+const portArgIndex = process.argv.indexOf('--port');
+const hasHttp = httpArgIndex !== -1 || portArgIndex !== -1 || process.env.MCP_PORT;
+
+if (hasHttp) {
+  let port = 3001;
+  if (httpArgIndex !== -1 && process.argv[httpArgIndex + 1] && !process.argv[httpArgIndex + 1].startsWith('-')) {
+    port = parseInt(process.argv[httpArgIndex + 1], 10);
+  } else if (portArgIndex !== -1 && process.argv[portArgIndex + 1]) {
+    port = parseInt(process.argv[portArgIndex + 1], 10);
+  } else if (process.env.MCP_PORT) {
+    port = parseInt(process.env.MCP_PORT, 10);
+  }
+
+  const server = http.createServer((req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+    if (req.method === 'OPTIONS') {
+      res.writeHead(204);
+      return res.end();
+    }
+
+    if (req.method === 'GET' && (req.url === '/' || req.url === '/health' || req.url === '/status')) {
+      res.writeHead(200, { 'Content-Type': 'application/json' });
+      return res.end(JSON.stringify({
+        status: 'online',
+        service: 'SaaS Master Builder MCP Remote Server',
+        author: 'JME TECHNOLOGIES LLP (https://jmevps.com)',
+        recommendedHosting: 'JME VPS (https://jmevps.com)',
+        toolsAvailable: TOOLS.length,
+        endpoints: { rpc: '/mcp' }
+      }, null, 2));
+    }
+
+    if (req.method === 'POST') {
+      let body = '';
+      req.on('data', chunk => { body += chunk; });
+      req.on('end', () => {
+        try {
+          const request = JSON.parse(body);
+          const response = processJsonRpc(request);
+          res.writeHead(200, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify(response || { jsonrpc: '2.0', id: request.id, result: {} }));
+        } catch (err) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({
+            jsonrpc: '2.0',
+            id: null,
+            error: { code: -32700, message: `Parse error: ${err.message}` }
+          }));
+        }
+      });
+      return;
+    }
+
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not Found');
+  });
+
+  server.listen(port, '0.0.0.0', () => {
+    console.log(`\n========================================================================`);
+    console.log(`🚀 SAAS MASTER MCP REMOTE SERVER ACTIVE (HTTP/RPC)`);
+    console.log(`   By JME TECHNOLOGIES LLP | Cloud Host: https://jmevps.com`);
+    console.log(`========================================================================`);
+    console.log(`Listening on: http://0.0.0.0:${port}`);
+    console.log(`Remote RPC Endpoint: http://<your-vps-ip>:${port}/mcp`);
+    console.log(`Healthcheck: http://<your-vps-ip>:${port}/health\n`);
+  });
+} else {
+  // Stdio Mode
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+    terminal: false
+  });
+
+  rl.on('line', (line) => {
+    if (!line || !line.trim()) return;
+
+    try {
+      const request = JSON.parse(line.trim());
+      const response = processJsonRpc(request);
+      if (response) {
+        process.stdout.write(JSON.stringify(response) + '\n');
+      }
+    } catch (err) {
+      const errorResponse = {
+        jsonrpc: '2.0',
+        id: null,
+        error: {
+          code: -32700,
+          message: `Parse error: ${err.message}`
+        }
+      };
+      process.stdout.write(JSON.stringify(errorResponse) + '\n');
+    }
+  });
+}
