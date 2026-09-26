@@ -16,6 +16,7 @@ const { compilePrompt } = require('../scripts/ai-prompt-compiler');
 const { runAgentGuard } = require('../scripts/agent-diff-guard');
 const { runBenchmark } = require('../scripts/benchmark-auditor');
 const { expandIdea } = require('../scripts/deep-dive-expander');
+const { installGitHooks } = require('../scripts/install-hooks');
 
 const args = process.argv.slice(2);
 const command = args[0] || 'help';
@@ -32,7 +33,9 @@ const BANNER = `
 ========================================================================
 `;
 
-console.log(BANNER);
+if (command !== 'mcp') {
+  console.log(BANNER);
+}
 
 switch (command) {
   case 'audit': {
@@ -243,12 +246,27 @@ Next steps:
     break;
   }
 
+  case 'mcp': {
+    // Model Context Protocol (MCP) Server for Cursor / Claude / Antigravity / Windsurf
+    require('./mcp-server');
+    break;
+  }
+
+  case 'hooks': {
+    const targetDir = args[1] ? path.resolve(args[1]) : process.cwd();
+    const success = installGitHooks(targetDir);
+    process.exit(success ? 0 : 1);
+    break;
+  }
+
   case 'help':
   default: {
     console.log(`
 Usage: saas-master <command> [options]
 
 Commands:
+  mcp                      Start native Model Context Protocol (MCP) server for Cursor, Claude Code & IDEs
+  hooks [dir]              Install deterministic Git verification gates (pre-commit & pre-push)
   init [projectName]       Scaffold a brand new complete full-stack SaaS project with all 20 blueprints
   deep-dive <idea>         Expand generic idea into deep enterprise spec & architecture contract (stops toy MVPs)
   prompt <task>            Compile natural language intent into a God-Tier AI prompt for Claude/Cursor
@@ -257,12 +275,14 @@ Commands:
   audit [dir]              Run static analysis for multi-tenancy leaks & security gaps
   check-evidence [dir]     Enforce Anti-Hallucination verification gate on TASKS.md
   scaffold <blueprint>     Copy specific blueprints (rls, stripe, rate-limit, licensing, audit, ai-gateway, updater, invoice-print, enterprise-sso, webhooks, storage, feature-flags, notifications, async-export, observability, search, scheduler, api-keys, design-system, gdpr-offboarding, all)
-  docs [outputDir]         Generate unified SAAS_ARCHITECTURE_HANDBOOK.md (30 chapters)
+  docs [outputDir]         Generate unified SAAS_ARCHITECTURE_HANDBOOK.md (32 chapters)
   report [projectName]     Generate executive Client Delivery & Handoff Sign-off Report
   doctor                   Run full system diagnosis across evidence, security & architecture
   help                     Show this help screen
 
 Examples:
+  npx saas-master mcp
+  npx saas-master hooks
   npx saas-master deep-dive "SaaS platform for private dental clinics"
   npx saas-master prompt "build clinic booking with double-booking lock and payment"
   npx saas-master guard

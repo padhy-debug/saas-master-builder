@@ -43,8 +43,59 @@ const AI_SINS = [
     pattern: /(invoice_number|order_number)\s*=\s*['"]INV-['"]\s*\+\s*(Date\.now\(\)|Math\.random\(\))/i,
     message: 'AI generated invoice numbers using random dates/strings leaving fiscal gaps (Law 8 violation).',
     fix: 'Use PostgreSQL locked fiscal sequence: SELECT get_next_fiscal_number(tenant_id, "INV", EXTRACT(YEAR FROM NOW())::INT)'
+  },
+  {
+    id: 'AI_SIN_DESTRUCTIVE_COMMAND',
+    pattern: /(?:execSync|exec|spawn|execFile|runCommand|shell\.exec)\s*\([^)]*\b(DROP\s+DATABASE|rm\s+-rf\s+[\/~]|git\s+reset\s+--hard\s+HEAD~)/i,
+    message: 'AI attempted destructive / unrecoverable operation violating Zero Data Loss constitutional law (Law 14).',
+    fix: 'Never drop databases or wipe trees in code. Use additive migrations and safe rollbacks.'
+  },
+  {
+    id: 'AI_SIN_HARDCODED_SECRET',
+    pattern: /['"](sk_live_[0-9a-zA-Z]{24,}|ghp_[0-9a-zA-Z]{36}|xoxb-[0-9]{11,})['"]/,
+    message: 'AI hardcoded live API keys or production secrets in source code.',
+    fix: 'Store secrets in environment variables (process.env.STRIPE_SECRET_KEY) and load via .env'
+  },
+  {
+    id: 'AI_SIN_CROSS_TENANT_MUTATION',
+    pattern: /\b(UPDATE\s+[a-zA-Z0-9_]+\s+SET|DELETE\s+FROM\s+[a-zA-Z0-9_]+)\b(?![^;]*(tenant_id|organization_id|current_tenant_id))/i,
+    message: 'AI generated SQL UPDATE or DELETE without explicit tenant_id scoping (Law 1 violation).',
+    fix: 'Scope all database mutations: WHERE id = $1 AND tenant_id = current_tenant_id()'
+  },
+  {
+    id: 'AI_SIN_LAZY_TRUNCATION',
+    pattern: /\/\/\s*TODO:\s*(rest of the code remains the same|previous code here|omitted for brevity)/i,
+    message: 'AI used lazy placeholder comments truncating or erasing production code.',
+    fix: 'Provide full, functional, surgically scoped code without omitting existing implementations.'
   }
 ];
+
+function inspectSnippet(content, fileName = 'snippet.ts') {
+  const violations = [];
+  const lines = content.split('\n');
+
+  AI_SINS.forEach(sin => {
+    lines.forEach((lineText, idx) => {
+      const trimmed = lineText.trim();
+      // Skip comment lines unless checking for lazy comment truncation
+      if (sin.id !== 'AI_SIN_LAZY_TRUNCATION' && (trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('#'))) {
+        return;
+      }
+      if (sin.pattern.test(lineText)) {
+        violations.push({
+          sinId: sin.id,
+          file: fileName,
+          lineNum: idx + 1,
+          lineContent: trimmed,
+          message: sin.message,
+          fix: sin.fix
+        });
+      }
+    });
+  });
+
+  return violations;
+}
 
 function runAgentGuard(targetDir = process.cwd()) {
   console.log(`\n🛡️ [Agent Diff Guard] Inspecting AI-generated changes in: ${targetDir}...\n`);
@@ -57,7 +108,7 @@ function runAgentGuard(targetDir = process.cwd()) {
     const lines = gitDiff.split('\n').filter(l => l.trim().length > 0);
     modifiedFiles = lines
       .map(l => l.substring(3).trim())
-      .filter(f => f.match(/\.(ts|js|tsx|jsx|sql)$/) && !f.includes('node_modules') && !f.includes('scripts/agent-diff-guard.js'));
+      .filter(f => f.match(/\.(ts|js|tsx|jsx|sql)$/) && !f.includes('node_modules') && !f.startsWith('scripts/') && !f.startsWith('bin/'));
   } catch (e) {
     // If git not available, scan all src / blueprints files
     const scanDir = (dir) => {
@@ -125,4 +176,4 @@ function runAgentGuard(targetDir = process.cwd()) {
   }
 }
 
-module.exports = { runAgentGuard };
+module.exports = { runAgentGuard, inspectSnippet, AI_SINS };

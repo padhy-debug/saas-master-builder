@@ -253,19 +253,28 @@ npx saas-master scaffold search
 npx saas-master scaffold all
 ```
 
-### Step 5: Real-Time AI Agent Code Guard
+### Step 5: Connect AI IDEs via Model Context Protocol (MCP) & Git Hooks
 ```bash
-# Catches the 10 Deadly AI Coding Sins (unscoped queries, float money rounding, fake mock tests):
+# Start native zero-dependency MCP server for Cursor, Claude Code, and Windsurf:
+npx saas-master mcp
+
+# Install deterministic git pre-commit & pre-push verification gates:
+npx saas-master hooks
+```
+
+### Step 6: Real-Time AI Agent Code Guard
+```bash
+# Catches the 10 Deadly AI Coding Sins (unscoped queries, float money rounding, fake mock tests, destructive commands):
 npx saas-master guard
 ```
 
-### Step 6: Compile Master Architecture Handbook
+### Step 7: Compile Master Architecture Handbook
 ```bash
-# Generates complete 31-chapter unified architecture book:
+# Generates complete 32-chapter unified architecture book:
 npx saas-master docs
 ```
 
-### Step 7: Run Doctor Diagnostics & Global Benchmark
+### Step 8: Run Doctor Diagnostics & Global Benchmark
 ```bash
 # Verifies architecture, evidence integrity, and security gates:
 npx saas-master doctor
@@ -341,6 +350,7 @@ Deep-dive engineering guides located in `saas-master-builder/references/`:
 29. [`29-design-systems-and-premium-user-experience.md`](./saas-master-builder/references/29-design-systems-and-premium-user-experience.md) — Linear/Vercel grade design tokens, 4 canonical UI states & WCAG 2.1 AA accessibility.
 30. [`30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md`](./saas-master-builder/references/30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md) — Lawful tenant offboarding, PII anonymization, S3 purge & Certificates of Destruction.
 31. [`31-deep-dive-domain-expansion-and-enterprise-productization.md`](./saas-master-builder/references/31-deep-dive-domain-expansion-and-enterprise-productization.md) — Deep-dive domain expansion, 8 non-negotiable core modules, and eliminating toy MVPs.
+32. [`32-agentic-governance-surgical-editing-and-mcp.md`](./saas-master-builder/references/32-agentic-governance-surgical-editing-and-mcp.md) — The 16 Constitutional Laws, Surgical Scope (MVD), 3-Strike Circuit Breaker, Zero Data Loss & Native MCP Server.
 
 ---
 

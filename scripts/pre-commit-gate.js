@@ -7,6 +7,7 @@
 
 const { runAudit } = require('./audit-engine');
 const { checkEvidence } = require('./evidence-checker');
+const { runAgentGuard } = require('./agent-diff-guard');
 
 console.log('🔒 [Git Pre-Commit Hook] Running SaaS Master Verification Gates...\n');
 
@@ -21,6 +22,13 @@ if (!evidenceResult.success) {
 const auditIssues = runAudit(process.cwd());
 if (auditIssues.length > 0) {
   console.error(`❌ Commit Blocked: Found ${auditIssues.length} potential security or leak issue(s).\n`);
+  process.exit(1);
+}
+
+// 3. Agent Diff Guard (10 Deadly AI Sins)
+const guardResult = runAgentGuard(process.cwd());
+if (guardResult.violations.length > 0) {
+  console.error(`❌ Commit Blocked: Detected ${guardResult.violations.length} AI coding sin(s). Fix violations before committing.\n`);
   process.exit(1);
 }
 
