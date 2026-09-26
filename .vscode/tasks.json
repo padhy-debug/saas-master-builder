@@ -1,0 +1,93 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "SaaS Master: Doctor Check",
+      "type": "shell",
+      "command": "node bin/cli.js doctor",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "SaaS Master: Verify Subsystems (E2E)",
+      "type": "shell",
+      "command": "node bin/cli.js verify",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "SaaS Master: Start MCP Server",
+      "type": "shell",
+      "command": "node bin/cli.js mcp",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "SaaS Master: AI Diff Guard",
+      "type": "shell",
+      "command": "node bin/cli.js guard",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "SaaS Master: Benchmark Score",
+      "type": "shell",
+      "command": "node bin/cli.js benchmark",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "SaaS Master: Local Event Simulator",
+      "type": "shell",
+      "command": "node bin/cli.js simulate all",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "SaaS Master: 60s Demo Tour",
+      "type": "shell",
+      "command": "node bin/cli.js demo",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "SaaS Master: Install Git Verification Hooks",
+      "type": "shell",
+      "command": "node bin/cli.js hooks",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

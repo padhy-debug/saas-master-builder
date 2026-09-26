@@ -12,7 +12,16 @@
     "check-evidence": "node bin/cli.js check-evidence",
     "doctor": "node bin/cli.js doctor",
     "scaffold": "node bin/cli.js scaffold",
-    "report": "node bin/cli.js report"
+    "report": "node bin/cli.js report",
+    "verify": "node bin/cli.js verify",
+    "simulate": "node bin/cli.js simulate",
+    "demo": "node bin/cli.js demo",
+    "mcp": "node bin/cli.js mcp",
+    "hooks": "node bin/cli.js hooks",
+    "guard": "node bin/cli.js guard",
+    "benchmark": "node bin/cli.js benchmark",
+    "docs": "node bin/cli.js docs",
+    "donate": "echo 'Support SaaS Master Builder via UPI: jmetechno@ybl (India only, No Crypto)'"
   },
   "keywords": [
     "saas",

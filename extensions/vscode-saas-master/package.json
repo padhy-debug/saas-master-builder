@@ -1,0 +1,96 @@
+{
+  "name": "vscode-saas-master",
+  "displayName": "SaaS Master Builder",
+  "description": "Autonomous Engineering OS & Production Breakthrough Toolkit for Unbreakable Multi-Tenant SaaS.",
+  "version": "1.0.0",
+  "publisher": "saas-master",
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Testing",
+    "Linters"
+  ],
+  "keywords": [
+    "saas",
+    "multi-tenancy",
+    "row-level-security",
+    "stripe",
+    "ai-agent",
+    "anti-hallucination"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "saasMaster.doctor",
+        "title": "SaaS Master: Run Full Doctor Diagnostics",
+        "category": "SaaS Master"
+      },
+      {
+        "command": "saasMaster.verify",
+        "title": "SaaS Master: Autonomous E2E System Verification (4ms)",
+        "category": "SaaS Master"
+      },
+      {
+        "command": "saasMaster.guard",
+        "title": "SaaS Master: Run AI Agent Diff Guard (10 Sins Linter)",
+        "category": "SaaS Master"
+      },
+      {
+        "command": "saasMaster.benchmark",
+        "title": "SaaS Master: Run Global SaaS Benchmark Audit (100/100)",
+        "category": "SaaS Master"
+      },
+      {
+        "command": "saasMaster.simulate",
+        "title": "SaaS Master: Run Local Sandbox Simulator (Stripe, SAML, Licensing)",
+        "category": "SaaS Master"
+      },
+      {
+        "command": "saasMaster.demo",
+        "title": "SaaS Master: Run 60-Second Architectural Tour",
+        "category": "SaaS Master"
+      },
+      {
+        "command": "saasMaster.scaffold",
+        "title": "SaaS Master: Scaffold Production Blueprint...",
+        "category": "SaaS Master"
+      },
+      {
+        "command": "saasMaster.deepDive",
+        "title": "SaaS Master: Deep-Dive Expand Idea to Enterprise Spec",
+        "category": "SaaS Master"
+      },
+      {
+        "command": "saasMaster.prompt",
+        "title": "SaaS Master: Compile God-Tier AI Prompt",
+        "category": "SaaS Master"
+      },
+      {
+        "command": "saasMaster.donate",
+        "title": "SaaS Master: Support Developer via UPI (jmetechno@ybl)",
+        "category": "SaaS Master"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        { "command": "saasMaster.doctor" },
+        { "command": "saasMaster.verify" },
+        { "command": "saasMaster.guard" },
+        { "command": "saasMaster.benchmark" },
+        { "command": "saasMaster.simulate" },
+        { "command": "saasMaster.demo" },
+        { "command": "saasMaster.scaffold" },
+        { "command": "saasMaster.deepDive" },
+        { "command": "saasMaster.prompt" },
+        { "command": "saasMaster.donate" }
+      ]
+    }
+  }
+}

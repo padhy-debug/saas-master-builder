@@ -18,11 +18,13 @@
 [![Anti-Hallucination](https://img.shields.io/badge/Protocol-Anti--Hallucination%20Enforced-blue.svg)](#the-anti-hallucination-evidence-gate)
 [![Security Standard](https://img.shields.io/badge/Security-OWASP%20Top%2010%20%2B%20RLS-red.svg)](#multi-tenant-isolation-rls)
 [![Compatible With](https://img.shields.io/badge/AI%20Agents-Claude%20%7C%20Cursor%20%7C%20Antigravity%20%7C%20Windsurf%20%7C%20Copilot-purple.svg)](#universal-ai-agent-os)
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-orange?logo=buy-me-a-coffee)](upi://pay?pa=jmetechno@ybl&pn=SaaS%20Master%20Builder&cu=INR)
+[![UPI Support](https://img.shields.io/badge/UPI-jmetechno%40ybl-green?logo=google-pay)](upi://pay?pa=jmetechno@ybl&pn=SaaS%20Master%20Builder&cu=INR)
 
 **Turn any AI Coding Agent into a 10x Principal SaaS Architect.**  
 *Zero Hallucinations. Zero Cross-Tenant Leaks. Zero Payment Race Conditions. 100% Client Satisfaction.*
 
-[Quickstart](#-quickstart-in-60-seconds) • [Architecture](#-system-architecture) • [Blueprints](#-production-blueprints) • [Anti-Hallucination Gate](#-the-anti-hallucination-evidence-gate) • [Client Handoff Kit](#-enterprise-client-handoff-kit)
+[Quickstart](#-quickstart-in-60-seconds) • [Architecture](#-system-architecture) • [Blueprints](#-production-blueprints) • [Anti-Hallucination Gate](#-the-anti-hallucination-evidence-gate) • [VS Code Extension](#-vs-code--cursor-extension) • [Sponsor](#-support--sponsorship-buy-me-a-coffee--india-upi)
 
 ---
 
@@ -361,6 +363,52 @@ Deep-dive engineering guides located in `saas-master-builder/references/`:
 31. [`31-deep-dive-domain-expansion-and-enterprise-productization.md`](./saas-master-builder/references/31-deep-dive-domain-expansion-and-enterprise-productization.md) — Deep-dive domain expansion, 8 non-negotiable core modules, and eliminating toy MVPs.
 32. [`32-agentic-governance-surgical-editing-and-mcp.md`](./saas-master-builder/references/32-agentic-governance-surgical-editing-and-mcp.md) — The 17 Constitutional Laws, Surgical Scope (MVD), 3-Strike Circuit Breaker, Zero Data Loss & Native MCP Server.
 33. [`33-fullstack-production-app-shell-and-local-sandbox.md`](./saas-master-builder/references/33-fullstack-production-app-shell-and-local-sandbox.md) — Full-stack multi-tenant dashboard app shell, 4 canonical UI states & local webhook sandbox simulator.
+
+---
+
+## 🧩 VS Code & Cursor Extension
+
+SaaS Master Builder includes a native editor extension in `extensions/vscode-saas-master/` that exposes all verification gates directly into the Command Palette (`Ctrl+Shift+P`) and Status Bar:
+
+- **Status Bar Hub**: Click `$(shield) SaaS Master: 100%` in the bottom right to trigger any tool.
+- **Autonomous E2E Verification**: Run `SaaS Master: Autonomous E2E System Verification (4ms)`.
+- **AI Agent Diff Guard**: Check recent edits for the 10 Deadly AI Sins.
+- **Local Event Simulator**: Dispatch mock Stripe webhooks, SAML assertions, and thermal print streams.
+- **1-Click Blueprints**: Inject any of the 21 enterprise blueprints into your workspace.
+
+```bash
+# Package into a VSIX extension:
+cd extensions/vscode-saas-master
+npx vsce package
+```
+
+---
+
+## ☕ Support & Sponsorship (Buy Me a Coffee / India UPI)
+
+If **SaaS Master Builder** saved you weeks of architectural headaches, prevented catastrophic cross-tenant data leaks, or helped you ship a multi-million-dollar SaaS product, consider supporting independent open-source engineering!
+
+> **Payment Policy**: We strictly do **NOT** accept cryptocurrency. For supporters in India or internationally via UPI-enabled applications (BHIM, Google Pay, PhonePe, Paytm), we support **direct zero-fee UPI transfers**.
+
+<div align="center">
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-Donate-FF813F?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white)](upi://pay?pa=jmetechno@ybl&pn=SaaS%20Master%20Builder&cu=INR)
+[![Direct UPI](https://img.shields.io/badge/Direct%20UPI-jmetechno%40ybl-008080?style=for-the-badge&logo=google-pay&logoColor=white)](upi://pay?pa=jmetechno@ybl&pn=SaaS%20Master%20Builder&cu=INR)
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-GitHub-EA4AAA?style=for-the-badge&logo=github-sponsors&logoColor=white)](https://github.com/sponsors)
+
+### 📲 Pay via UPI (India / BHIM / GPay / PhonePe / Paytm):
+```
+VPA (UPI ID):  jmetechno@ybl
+Payee Name:    SaaS Master Builder
+Currency:      INR (₹)
+Accepted Apps: Google Pay, PhonePe, Paytm, BHIM, Cred, Any UPI App
+```
+
+**[👉 Click here to Pay directly via UPI App on Mobile](upi://pay?pa=jmetechno@ybl&pn=SaaS%20Master%20Builder&cu=INR)**
+
+*Thank you for fueling the next generation of unbreakable, zero-hallucination SaaS development!*
+
+</div>
 
 ---
 
