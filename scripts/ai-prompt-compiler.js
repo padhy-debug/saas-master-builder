@@ -7,6 +7,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const { matchDomain } = require('./deep-dive-expander');
+
 const KEYWORD_BLUEPRINT_INDEX = [
   { keywords: ['tenant', 'rls', 'isolation', 'multi-tenant', 'org', 'organization'], blueprint: '01-multi-tenant-rls', laws: ['Law 1 (Tenant Scoping)', 'Law 2 (JWT Session Claim)', 'Law 3 (FORCE RLS)'] },
   { keywords: ['stripe', 'billing', 'subscription', 'payment', 'webhook', 'invoice', 'credit card'], blueprint: '02-bulletproof-stripe', laws: ['Law 4 (Signature Verification)', 'Law 5 (Webhook Idempotency)', 'Law 6 (7-day Grace Period)'] },
@@ -51,6 +53,16 @@ function compilePrompt(taskDescription, repoRootDir = path.resolve(__dirname, '.
     }
   });
 
+  // Domain intelligence integration
+  const domain = matchDomain(taskDescription);
+  if (domain && domain.recommendedBlueprints) {
+    domain.recommendedBlueprints.forEach(bp => {
+      if (!matchedBlueprints.includes(bp)) {
+        matchedBlueprints.push(bp);
+      }
+    });
+  }
+
   // Default to core architecture if no specific blueprint keyword matched
   if (matchedBlueprints.length === 0) {
     matchedBlueprints.push('01-multi-tenant-rls', '05-rbac-audit-trail');
@@ -61,12 +73,25 @@ function compilePrompt(taskDescription, repoRootDir = path.resolve(__dirname, '.
 ================================================================================
 
 <ROLE_AND_OBJECTIVE>
-You are operating as a Senior Principal SaaS Architect and Systems Security Engineer.
-Your objective is to implement the following user feature with ZERO hallucinations, production-grade security, and complete multi-tenant isolation:
+You are operating as a Senior Principal SaaS Architect, Security Auditor, and Systems Engineer.
+Your objective is to implement the following user feature with ZERO hallucinations, production-grade security, and complete multi-tenant isolation.
+You must NOT build a shallow toy MVP (basic 1-form template). You must build a DEEP, complete, enterprise-grade system that delights users and commands 5-star reviews.
 
 FEATURE REQUIREMENT:
 "${taskDescription.trim()}"
+
+TARGET INDUSTRY / VERTICAL:
+${domain.industryName}
 </ROLE_AND_OBJECTIVE>
+
+<DOMAIN_ENTERPRISE_REQUIREMENTS>
+Enterprise paying customers in this vertical demand these core modules and protections:
+1. Regulatory & Compliance: Must adhere to ${domain.regulatoryFrameworks.join(', ')}.
+2. Core Non-Negotiable Modules:
+${domain.nonNegotiableModules.map(m => `   - ${m}`).join('\n')}
+3. Critical Edge Cases to Prevent:
+${domain.hiddenFailureModes.map(e => `   - ${e}`).join('\n')}
+</DOMAIN_ENTERPRISE_REQUIREMENTS>
 
 <ARCHITECTURAL_CONSTRAINTS_AND_LAWS>
 You must strictly obey the SaaS Master Builder Engineering Laws:

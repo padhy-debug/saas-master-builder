@@ -50,6 +50,7 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 | `references/28-public-api-keys-and-developer-platform.md` | B2B developer platform API keys, SHA-256 hashing, fine-grained scopes & key rotation |
 | `references/29-design-systems-and-premium-user-experience.md` | Linear/Vercel grade design tokens, 4 canonical UI states & WCAG 2.1 AA accessibility |
 | `references/30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md` | Lawful tenant offboarding, PII anonymization, S3 purge & Certificates of Destruction |
+| `references/31-deep-dive-domain-expansion-and-enterprise-productization.md` | Deep-dive domain expansion, 8 non-negotiable core modules, and eliminating toy MVPs |
 
 ## Production Blueprints (`blueprints/`)
 
@@ -88,9 +89,13 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 ## CLI Commands (`npx saas-master`)
 
 - `npx saas-master init <name>`: Scaffolds a complete full-stack SaaS project with all 20 production blueprints.
+- `npx saas-master deep-dive <idea>`: Expands any generic idea into an enterprise spec & architecture contract (stops toy MVPs).
+- `npx saas-master prompt <task>`: Compiles natural language into a God-Tier AI prompt with deep domain intelligence.
+- `npx saas-master guard`: Real-time AI agent code scanner (detects the 10 Deadly AI Coding Sins).
+- `npx saas-master benchmark`: Runs unbiased empirical benchmark comparing against global SaaS standards (100/100).
 - `npx saas-master audit`: Scans codebase for cross-tenant leaks, hardcoded secrets, and missing webhook idempotency.
 - `npx saas-master check-evidence`: Audits `TASKS.md` to ensure zero checklist items are checked without proof.
 - `npx saas-master scaffold <name>`: Injects production blueprints directly into your codebase.
-- `npx saas-master docs`: Compiles the unified 30-chapter `SAAS_ARCHITECTURE_HANDBOOK.md`.
+- `npx saas-master docs`: Compiles the unified 31-chapter `SAAS_ARCHITECTURE_HANDBOOK.md`.
 - `npx saas-master report "<Client Name>"`: Generates an executive client sign-off report.
 - `npx saas-master doctor`: Full system diagnosis across security, evidence, and multi-tenancy.

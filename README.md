@@ -229,38 +229,47 @@ No task in `TASKS.md` or `LAUNCH_CHECKLIST.md` can be marked complete unless acc
 npx saas-master help
 ```
 
-### Step 2: Initialize a New SaaS Project
+### Step 2: Deep-Dive Domain Architecture (Stop Shallow MVPs)
+```bash
+# Expand any generic concept into an enterprise specification & architecture contract:
+npx saas-master deep-dive "SaaS platform for private dental clinics"
+```
+
+### Step 3: Compile God-Tier AI Agent Prompt
+```bash
+# Force Claude, Cursor, Devin, or Antigravity to build complete enterprise depth:
+npx saas-master prompt "build dental clinic EHR with appointment locks and e-prescriptions"
+```
+
+### Step 4: Initialize or Scaffold Your Project
 ```bash
 # Scaffolds full repo structure with all 20 blueprints and docker stack:
 npx saas-master init my-saas-platform
-```
 
-### Step 3: Audit Your Existing Codebase
-```bash
-# Scans for hardcoded secrets, missing RLS, and unhandled webhooks:
-npx saas-master audit
-```
-
-### Step 4: Scaffold Production Modules
-```bash
-# Inject battle-tested blueprints directly into your src/ directory:
+# Or inject specific blueprints directly into an existing project:
 npx saas-master scaffold rls
 npx saas-master scaffold stripe
-npx saas-master scaffold rate-limit
 npx saas-master scaffold search
 npx saas-master scaffold all
 ```
 
-### Step 5: Compile Master Architecture Handbook
+### Step 5: Real-Time AI Agent Code Guard
 ```bash
-# Generates complete 30-chapter unified architecture book:
+# Catches the 10 Deadly AI Coding Sins (unscoped queries, float money rounding, fake mock tests):
+npx saas-master guard
+```
+
+### Step 6: Compile Master Architecture Handbook
+```bash
+# Generates complete 31-chapter unified architecture book:
 npx saas-master docs
 ```
 
-### Step 6: Run Doctor Diagnostics
+### Step 7: Run Doctor Diagnostics & Global Benchmark
 ```bash
 # Verifies architecture, evidence integrity, and security gates:
 npx saas-master doctor
+npx saas-master benchmark
 ```
 
 ---
@@ -331,6 +340,7 @@ Deep-dive engineering guides located in `saas-master-builder/references/`:
 28. [`28-public-api-keys-and-developer-platform.md`](./saas-master-builder/references/28-public-api-keys-and-developer-platform.md) — B2B developer platform API keys, SHA-256 hashing, fine-grained scopes & key rotation.
 29. [`29-design-systems-and-premium-user-experience.md`](./saas-master-builder/references/29-design-systems-and-premium-user-experience.md) — Linear/Vercel grade design tokens, 4 canonical UI states & WCAG 2.1 AA accessibility.
 30. [`30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md`](./saas-master-builder/references/30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md) — Lawful tenant offboarding, PII anonymization, S3 purge & Certificates of Destruction.
+31. [`31-deep-dive-domain-expansion-and-enterprise-productization.md`](./saas-master-builder/references/31-deep-dive-domain-expansion-and-enterprise-productization.md) — Deep-dive domain expansion, 8 non-negotiable core modules, and eliminating toy MVPs.
 
 ---
 

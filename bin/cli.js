@@ -15,6 +15,7 @@ const { generateHandbook } = require('../scripts/docs-generator');
 const { compilePrompt } = require('../scripts/ai-prompt-compiler');
 const { runAgentGuard } = require('../scripts/agent-diff-guard');
 const { runBenchmark } = require('../scripts/benchmark-auditor');
+const { expandIdea } = require('../scripts/deep-dive-expander');
 
 const args = process.argv.slice(2);
 const command = args[0] || 'help';
@@ -202,6 +203,14 @@ Next steps:
     break;
   }
 
+  case 'deep-dive':
+  case 'expand': {
+    const userIdea = args.slice(1).join(' ');
+    const result = expandIdea(userIdea, process.cwd());
+    process.exit(result ? 0 : 1);
+    break;
+  }
+
   case 'doctor': {
     console.log('🩺 [Doctor] Running comprehensive SaaS health & anti-hallucination check...\n');
     let hasErrors = false;
@@ -241,6 +250,7 @@ Usage: saas-master <command> [options]
 
 Commands:
   init [projectName]       Scaffold a brand new complete full-stack SaaS project with all 20 blueprints
+  deep-dive <idea>         Expand generic idea into deep enterprise spec & architecture contract (stops toy MVPs)
   prompt <task>            Compile natural language intent into a God-Tier AI prompt for Claude/Cursor
   guard [dir]              Real-time AI agent code scanner (detects the 10 Deadly AI Coding Sins)
   benchmark                Run unbiased empirical benchmark comparing against global SaaS standards
@@ -253,7 +263,8 @@ Commands:
   help                     Show this help screen
 
 Examples:
-  npx saas-master prompt "Add team member invite flow with role-based permissions"
+  npx saas-master deep-dive "SaaS platform for private dental clinics"
+  npx saas-master prompt "build clinic booking with double-booking lock and payment"
   npx saas-master guard
   npx saas-master benchmark
   npx saas-master init my-saas-platform
