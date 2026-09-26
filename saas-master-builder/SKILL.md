@@ -39,6 +39,12 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 | `references/17-enterprise-identity-sso-scim-security.md` | Enterprise SAML 2.0 / OIDC SSO, SCIM 2.0 automated directory sync & cryptographic superadmin impersonation |
 | `references/18-offline-first-crdt-sync-engine.md` | Offline-first architecture, local mutation outbox queue, CRDTs, vector clocks & deterministic state convergence |
 | `references/19-bulletproof-versioning-backward-compatibility.md` | Stripe-style date-based API transformations, additive-only evolution & 100-year backward compatibility |
+| `references/20-universal-outbound-webhooks.md` | Universal outbound webhooks dispatcher, HMAC-SHA256 signatures, SSRF protection & retry queues |
+| `references/21-secure-object-storage-and-large-file-uploads.md` | Direct-to-S3/R2 presigned upload pipeline, tenant folder sandboxing & MIME validation |
+| `references/22-feature-flags-remote-config-entitlements.md` | High-performance in-memory feature flags, percentage canary rollouts & plan tier entitlements |
+| `references/23-omnichannel-notifications-and-in-app-inbox.md` | Omni-channel notification hub, in-app notification center inbox & digest batching |
+| `references/24-async-data-exports-and-etl-streaming.md` | High-volume streaming CSV exports, cursor pagination & Excel formula injection defense |
+| `references/25-internationalization-i18n-currencies-timezones.md` | Universal UTC timestamps, integer minor-unit currencies (no float bugs) & RTL layouts |
 
 ## Production Blueprints (`blueprints/`)
 
@@ -51,6 +57,11 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 - `blueprints/07-bulletproof-auto-updater/` — Dual-slot self-healing auto-updater with Windows UAC trampoline & auto-rollback.
 - `blueprints/08-universal-print-and-invoice-engine/` — Universal print & invoice engine, letterhead calibrator & ESC/POS thermal generator.
 - `blueprints/09-enterprise-sso-scim/` — Enterprise SAML 2.0 SSO, SCIM 2.0 directory sync & superadmin impersonation guard.
+- `blueprints/10-outbound-webhooks-engine/` — Outbound webhooks dispatcher with HMAC-SHA256 signing, SSRF defense & delivery logging.
+- `blueprints/11-secure-storage-uploads/` — Direct-to-S3/R2 presigned upload pipeline with tenant sandboxing & MIME validation.
+- `blueprints/12-feature-flags-entitlements/` — In-memory feature flag evaluator with percentage canary rollouts & plan tier limits.
+- `blueprints/13-omnichannel-notifications/` — Omni-channel notification hub & in-app notification center inbox.
+- `blueprints/14-async-export-data-pipeline/` — High-volume streaming CSV data export worker with Excel injection sanitization.
 
 ## Project Templates (`templates/`)
 

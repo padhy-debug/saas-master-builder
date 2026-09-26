@@ -149,6 +149,26 @@ Battle-tested, enterprise-grade code that can be injected into any project insta
 - **Files**: `blueprints/09-enterprise-sso-scim/`
 - **Features**: SAML 2.0 assertion validator (Okta / Azure AD / Google Workspace), automated SCIM 2.0 user provisioning/deprovisioning webhooks, and short-lived, tamper-proof superadmin impersonation token guard.
 
+### 10. Universal Outbound Webhooks Dispatcher
+- **Files**: `blueprints/10-outbound-webhooks-engine/`
+- **Features**: Cryptographic HMAC-SHA256 request signing (`X-Hub-Signature-256`), SSRF IP blocklist protection, exponential backoff retries, and delivery logging.
+
+### 11. Direct-to-Storage Presigned Upload Pipeline
+- **Files**: `blueprints/11-secure-storage-uploads/`
+- **Features**: Client direct-to-S3/R2 presigned upload URLs (zero API server memory overhead), strict MIME/magic byte validation, and sandboxed tenant folder isolation.
+
+### 12. In-Memory Feature Flags & Plan Entitlements
+- **Files**: `blueprints/12-feature-flags-entitlements/`
+- **Features**: Sub-millisecond in-memory flag evaluation, deterministic percentage canary rollouts (Murmur/SHA-256 hash), emergency kill switches, and plan tier quota gating.
+
+### 13. Omni-Channel Notification Hub & In-App Inbox
+- **Files**: `blueprints/13-omnichannel-notifications/`
+- **Features**: Compound-indexed in-app notification center inbox, unread counter management, transactional vs promotional preference checking, and digest batching.
+
+### 14. High-Volume Streaming CSV Data Export Pipeline
+- **Files**: `blueprints/14-async-export-data-pipeline/`
+- **Features**: Memory-efficient cursor-based database streaming, zero-heap-exhaustion chunking, automatic GZIP compression, and Excel CSV formula injection sanitization.
+
 ---
 
 ## 🛡️ The Anti-Hallucination Evidence Gate

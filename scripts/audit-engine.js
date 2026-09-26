@@ -24,7 +24,7 @@ const SECURITY_PATTERNS = [
   },
   {
     id: 'MISSING_STRIPE_SIGNATURE_VERIFICATION',
-    filePattern: /(webhook|stripe-handler).*\.(ts|js)$/i,
+    filePattern: /(stripe.*webhook|webhook.*stripe).*\.(ts|js)$/i,
     mustContain: ['stripe.webhooks.constructEvent'],
     severity: 'CRITICAL',
     message: 'Stripe webhook endpoint detected without cryptographic signature verification (constructEvent).',
@@ -32,7 +32,7 @@ const SECURITY_PATTERNS = [
   },
   {
     id: 'MISSING_WEBHOOK_IDEMPOTENCY',
-    filePattern: /(webhook|stripe-handler).*\.(ts|js)$/i,
+    filePattern: /(stripe.*webhook|webhook.*stripe).*\.(ts|js)$/i,
     mustContainAny: ['idempotency', 'processed_events', 'event_id', 'processedEvents'],
     severity: 'HIGH',
     message: 'Stripe webhook handler missing idempotency tracking. Network retries can double-charge or duplicate provisioning.',

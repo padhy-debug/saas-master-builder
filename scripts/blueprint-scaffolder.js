@@ -51,6 +51,31 @@ const BLUEPRINT_MAP = {
     source: 'blueprints/09-enterprise-sso-scim',
     dest: 'src/lib/enterprise-sso',
     description: 'Enterprise SAML 2.0 SSO, SCIM 2.0 directory sync & superadmin impersonation guard'
+  },
+  'webhooks': {
+    source: 'blueprints/10-outbound-webhooks-engine',
+    dest: 'src/lib/outbound-webhooks',
+    description: 'Outbound webhooks dispatcher with HMAC-SHA256 signing, SSRF protection & retry queue'
+  },
+  'storage': {
+    source: 'blueprints/11-secure-storage-uploads',
+    dest: 'src/lib/storage-uploads',
+    description: 'Direct-to-S3/R2 presigned upload pipeline with tenant sandboxing & MIME validation'
+  },
+  'feature-flags': {
+    source: 'blueprints/12-feature-flags-entitlements',
+    dest: 'src/lib/feature-flags',
+    description: 'In-memory feature flag evaluator with percentage canary rollouts & plan tier limits'
+  },
+  'notifications': {
+    source: 'blueprints/13-omnichannel-notifications',
+    dest: 'src/lib/notifications',
+    description: 'Omni-channel notification hub & in-app notification center inbox'
+  },
+  'async-export': {
+    source: 'blueprints/14-async-export-data-pipeline',
+    dest: 'src/lib/async-exports',
+    description: 'High-volume streaming CSV data export worker with Excel injection sanitization'
   }
 };
 
