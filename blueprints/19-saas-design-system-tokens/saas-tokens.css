@@ -1,0 +1,83 @@
+/**
+ * SaaS Master Builder - High-Converting Premium Design Tokens
+ * Linear / Vercel grade dark and light theme tokens with glassmorphism and subtle elevation.
+ */
+
+:root {
+  /* Light Theme */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-elevated: #ffffff;
+  
+  --border-subtle: #e5e7eb;
+  --border-strong: #d1d5db;
+  --border-focus: #3b82f6;
+
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+  --text-inverse: #ffffff;
+
+  --brand-primary: #2563eb;
+  --brand-hover: #1d4ed8;
+  --brand-surface: #eff6ff;
+
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+[data-theme='dark'] {
+  /* Dark Theme */
+  --bg-primary: #09090b;
+  --bg-secondary: #121215;
+  --bg-tertiary: #18181b;
+  --bg-elevated: #27272a;
+
+  --border-subtle: #27272a;
+  --border-strong: #3f3f46;
+  --border-focus: #60a5fa;
+
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --text-inverse: #09090b;
+
+  --brand-primary: #3b82f6;
+  --brand-hover: #60a5fa;
+  --brand-surface: rgba(59, 130, 246, 0.12);
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px 0 rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 12px 24px -4px rgba(0, 0, 0, 0.8);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(18, 18, 21, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Subtle micro-animation */
+.interactive-hover {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.interactive-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}

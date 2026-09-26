@@ -45,6 +45,11 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 | `references/23-omnichannel-notifications-and-in-app-inbox.md` | Omni-channel notification hub, in-app notification center inbox & digest batching |
 | `references/24-async-data-exports-and-etl-streaming.md` | High-volume streaming CSV exports, cursor pagination & Excel formula injection defense |
 | `references/25-internationalization-i18n-currencies-timezones.md` | Universal UTC timestamps, integer minor-unit currencies (no float bugs) & RTL layouts |
+| `references/26-high-performance-search-and-pgvector.md` | Hybrid full-text (GIN/trigram) + pgvector semantic search with Reciprocal Rank Fusion |
+| `references/27-distributed-cron-and-background-schedulers.md` | PostgreSQL advisory lock leader election, singleton workers & heartbeat healthchecks |
+| `references/28-public-api-keys-and-developer-platform.md` | B2B developer platform API keys, SHA-256 hashing, fine-grained scopes & key rotation |
+| `references/29-design-systems-and-premium-user-experience.md` | Linear/Vercel grade design tokens, 4 canonical UI states & WCAG 2.1 AA accessibility |
+| `references/30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md` | Lawful tenant offboarding, PII anonymization, S3 purge & Certificates of Destruction |
 
 ## Production Blueprints (`blueprints/`)
 
@@ -62,6 +67,12 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 - `blueprints/12-feature-flags-entitlements/` — In-memory feature flag evaluator with percentage canary rollouts & plan tier limits.
 - `blueprints/13-omnichannel-notifications/` — Omni-channel notification hub & in-app notification center inbox.
 - `blueprints/14-async-export-data-pipeline/` — High-volume streaming CSV data export worker with Excel injection sanitization.
+- `blueprints/15-observability-health-probes/` — Production /healthz & /readyz probes, memory warning, and correlation tracing.
+- `blueprints/16-universal-search-vector/` — Hybrid full-text (tsvector/pg_trgm) and pgvector semantic vector search engine.
+- `blueprints/17-distributed-cron-scheduler/` — Distributed background cron scheduler using PostgreSQL advisory lock leader election.
+- `blueprints/18-api-key-management/` — B2B developer platform API key provisioning, SHA-256 hashing, and scope verification.
+- `blueprints/19-saas-design-system-tokens/` — Linear/Vercel grade CSS tokens, dark/light themes, and UI state components.
+- `blueprints/20-gdpr-tenant-offboarding/` — GDPR/CCPA tenant offboarding engine, cascade PII scrubbing, and Certificate of Destruction.
 
 ## Project Templates (`templates/`)
 
@@ -76,8 +87,10 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 
 ## CLI Commands (`npx saas-master`)
 
+- `npx saas-master init <name>`: Scaffolds a complete full-stack SaaS project with all 20 production blueprints.
 - `npx saas-master audit`: Scans codebase for cross-tenant leaks, hardcoded secrets, and missing webhook idempotency.
 - `npx saas-master check-evidence`: Audits `TASKS.md` to ensure zero checklist items are checked without proof.
 - `npx saas-master scaffold <name>`: Injects production blueprints directly into your codebase.
+- `npx saas-master docs`: Compiles the unified 30-chapter `SAAS_ARCHITECTURE_HANDBOOK.md`.
 - `npx saas-master report "<Client Name>"`: Generates an executive client sign-off report.
 - `npx saas-master doctor`: Full system diagnosis across security, evidence, and multi-tenancy.

@@ -11,6 +11,7 @@ const { runAudit } = require('../scripts/audit-engine');
 const { checkEvidence } = require('../scripts/evidence-checker');
 const { scaffold, BLUEPRINT_MAP } = require('../scripts/blueprint-scaffolder');
 const { generateClientReport } = require('../scripts/client-report');
+const { generateHandbook } = require('../scripts/docs-generator');
 
 const args = process.argv.slice(2);
 const command = args[0] || 'help';
@@ -145,7 +146,7 @@ switch (command) {
     }
 
     // 4. Scaffold all blueprints into target
-    console.log('\n📦 Scaffolding all 15 production blueprints into src/lib/...');
+    console.log('\n📦 Scaffolding all 20 production blueprints into src/lib/...');
     scaffold('all', targetDir, repoRootDir);
 
     console.log(`
@@ -165,6 +166,14 @@ Next steps:
     const projectName = args[1] || 'Production SaaS Platform';
     generateClientReport(process.cwd(), projectName);
     process.exit(0);
+    break;
+  }
+
+  case 'docs': {
+    const outputDir = args[1] ? path.resolve(args[1]) : process.cwd();
+    const repoRootDir = path.resolve(__dirname, '..');
+    const success = generateHandbook(repoRootDir, outputDir);
+    process.exit(success ? 0 : 1);
     break;
   }
 
@@ -206,10 +215,11 @@ Next steps:
 Usage: saas-master <command> [options]
 
 Commands:
-  init [projectName]       Scaffold a brand new complete full-stack SaaS project with all 15 blueprints
+  init [projectName]       Scaffold a brand new complete full-stack SaaS project with all 20 blueprints
   audit [dir]              Run static analysis for multi-tenancy leaks & security gaps
   check-evidence [dir]     Enforce Anti-Hallucination verification gate on TASKS.md
-  scaffold <blueprint>     Copy specific blueprints (rls, stripe, rate-limit, licensing, audit, ai-gateway, updater, invoice-print, enterprise-sso, webhooks, storage, feature-flags, notifications, async-export, observability, all)
+  scaffold <blueprint>     Copy specific blueprints (rls, stripe, rate-limit, licensing, audit, ai-gateway, updater, invoice-print, enterprise-sso, webhooks, storage, feature-flags, notifications, async-export, observability, search, scheduler, api-keys, design-system, gdpr-offboarding, all)
+  docs [outputDir]         Generate unified SAAS_ARCHITECTURE_HANDBOOK.md (30 chapters)
   report [projectName]     Generate executive Client Delivery & Handoff Sign-off Report
   doctor                   Run full system diagnosis across evidence, security & architecture
   help                     Show this help screen
@@ -219,6 +229,7 @@ Examples:
   npx saas-master audit
   npx saas-master check-evidence
   npx saas-master scaffold all
+  npx saas-master docs
   npx saas-master report "Acme Analytics SaaS"
   npx saas-master doctor
 `);

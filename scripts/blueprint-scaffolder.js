@@ -81,6 +81,31 @@ const BLUEPRINT_MAP = {
     source: 'blueprints/15-observability-health-probes',
     dest: 'src/lib/observability',
     description: 'Production /healthz & /readyz probes, memory warning, and correlation tracing'
+  },
+  'search': {
+    source: 'blueprints/16-universal-search-vector',
+    dest: 'src/lib/search',
+    description: 'PostgreSQL full-text, trigram fuzzy search and pgvector semantic hybrid search'
+  },
+  'scheduler': {
+    source: 'blueprints/17-distributed-cron-scheduler',
+    dest: 'src/lib/scheduler',
+    description: 'Distributed cron scheduler with PostgreSQL advisory lock leader election'
+  },
+  'api-keys': {
+    source: 'blueprints/18-api-key-management',
+    dest: 'src/lib/api-keys',
+    description: 'B2B developer platform API keys with SHA-256 hashing and scope enforcement'
+  },
+  'design-system': {
+    source: 'blueprints/19-saas-design-system-tokens',
+    dest: 'src/lib/design-system',
+    description: 'Linear/Vercel grade design tokens, dark/light theme, and UI state components'
+  },
+  'gdpr-offboarding': {
+    source: 'blueprints/20-gdpr-tenant-offboarding',
+    dest: 'src/lib/gdpr-offboarding',
+    description: 'GDPR/CCPA tenant offboarding, PII anonymization, S3 purge & Certificate of Destruction'
   }
 };
 

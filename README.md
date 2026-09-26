@@ -169,6 +169,30 @@ Battle-tested, enterprise-grade code that can be injected into any project insta
 - **Files**: `blueprints/14-async-export-data-pipeline/`
 - **Features**: Memory-efficient cursor-based database streaming, zero-heap-exhaustion chunking, automatic GZIP compression, and Excel CSV formula injection sanitization.
 
+### 15. Observability Probes & Health Checks
+- **Files**: `blueprints/15-observability-health-probes/`
+- **Features**: Production `/healthz` liveness and `/readyz` readiness endpoints, database/redis connection pool probes, memory leak warning thresholds, and W3C distributed trace correlation IDs.
+
+### 16. Universal Search & pgvector Semantic Engine
+- **Files**: `blueprints/16-universal-search-vector/`
+- **Features**: Multi-tenant full-text search (`tsvector`), typo-tolerant fuzzy matching (`pg_trgm`), and semantic vector similarity search via `pgvector` HNSW indexes with Reciprocal Rank Fusion (RRF).
+
+### 17. Distributed Cron Scheduler & Leader Election
+- **Files**: `blueprints/17-distributed-cron-scheduler/`
+- **Features**: Zero-downtime, multi-replica background job coordinator using PostgreSQL 64-bit advisory locks (`pg_try_advisory_lock`), persistent execution heartbeats, and lock leak prevention.
+
+### 18. B2B Developer Platform & API Key Management
+- **Files**: `blueprints/18-api-key-management/`
+- **Features**: Enterprise developer API key generation (`sk_live_...`), immutable SHA-256 hash storage, fine-grained permission scopes, usage metrics tracking, and instant zero-downtime revocation.
+
+### 19. Linear-Grade Design System & State Machine
+- **Files**: `blueprints/19-saas-design-system-tokens/`
+- **Features**: CSS custom properties design tokens, seamless dark/light modes, accessible WCAG 2.1 AA contrast, and zero-dependency React state components (EmptyState, Skeleton, ErrorBoundary, SubscriptionPaywallModal).
+
+### 20. GDPR/CCPA Tenant Offboarding & Data Scrubber
+- **Files**: `blueprints/20-gdpr-tenant-offboarding/`
+- **Features**: Lawful Right-to-be-Forgotten workflow, PII pseudonymization while preserving gapless statutory fiscal audit journals, S3/MinIO tenant prefix purging, and cryptographic HMAC-SHA256 Certificates of Destruction.
+
 ---
 
 ## 🛡️ The Anti-Hallucination Evidence Gate
@@ -205,22 +229,35 @@ No task in `TASKS.md` or `LAUNCH_CHECKLIST.md` can be marked complete unless acc
 npx saas-master help
 ```
 
-### Step 2: Audit Your Existing Codebase
+### Step 2: Initialize a New SaaS Project
+```bash
+# Scaffolds full repo structure with all 20 blueprints and docker stack:
+npx saas-master init my-saas-platform
+```
+
+### Step 3: Audit Your Existing Codebase
 ```bash
 # Scans for hardcoded secrets, missing RLS, and unhandled webhooks:
 npx saas-master audit
 ```
 
-### Step 3: Scaffold Production Modules
+### Step 4: Scaffold Production Modules
 ```bash
 # Inject battle-tested blueprints directly into your src/ directory:
 npx saas-master scaffold rls
 npx saas-master scaffold stripe
 npx saas-master scaffold rate-limit
+npx saas-master scaffold search
 npx saas-master scaffold all
 ```
 
-### Step 4: Run Doctor Diagnostics
+### Step 5: Compile Master Architecture Handbook
+```bash
+# Generates complete 30-chapter unified architecture book:
+npx saas-master docs
+```
+
+### Step 6: Run Doctor Diagnostics
 ```bash
 # Verifies architecture, evidence integrity, and security gates:
 npx saas-master doctor
@@ -283,6 +320,17 @@ Deep-dive engineering guides located in `saas-master-builder/references/`:
 17. [`17-enterprise-identity-sso-scim-security.md`](./saas-master-builder/references/17-enterprise-identity-sso-scim-security.md) — Enterprise SAML 2.0 / OIDC SSO, SCIM 2.0 automated directory sync & cryptographic superadmin impersonation.
 18. [`18-offline-first-crdt-sync-engine.md`](./saas-master-builder/references/18-offline-first-crdt-sync-engine.md) — Offline-first local mutation outbox queue, CRDTs, vector clocks & deterministic state convergence.
 19. [`19-bulletproof-versioning-backward-compatibility.md`](./saas-master-builder/references/19-bulletproof-versioning-backward-compatibility.md) — Stripe-style date-based API transformations, additive-only evolution & 100-year backward compatibility.
+20. [`20-universal-outbound-webhooks.md`](./saas-master-builder/references/20-universal-outbound-webhooks.md) — Outbound webhook dispatcher, HMAC-SHA256 signatures, SSRF IP filtering & retry queues.
+21. [`21-secure-object-storage-and-large-file-uploads.md`](./saas-master-builder/references/21-secure-object-storage-and-large-file-uploads.md) — Direct-to-S3/R2 presigned upload pipeline with tenant sandboxing & MIME validation.
+22. [`22-feature-flags-remote-config-entitlements.md`](./saas-master-builder/references/22-feature-flags-remote-config-entitlements.md) — In-memory feature flag evaluator, percentage canary rollouts & plan tier limits.
+23. [`23-omnichannel-notifications-and-in-app-inbox.md`](./saas-master-builder/references/23-omnichannel-notifications-and-in-app-inbox.md) — Omni-channel notification hub, compound-indexed in-app notification center inbox.
+24. [`24-async-data-exports-and-etl-streaming.md`](./saas-master-builder/references/24-async-data-exports-and-etl-streaming.md) — Streaming CSV data export worker, cursor pagination & Excel formula injection sanitization.
+25. [`25-internationalization-i18n-currencies-timezones.md`](./saas-master-builder/references/25-internationalization-i18n-currencies-timezones.md) — Universal UTC timestamps, integer minor-unit currencies (no float bugs) & RTL layouts.
+26. [`26-high-performance-search-and-pgvector.md`](./saas-master-builder/references/26-high-performance-search-and-pgvector.md) — Hybrid full-text (GIN/trigram) + pgvector semantic search with Reciprocal Rank Fusion.
+27. [`27-distributed-cron-and-background-schedulers.md`](./saas-master-builder/references/27-distributed-cron-and-background-schedulers.md) — PostgreSQL advisory lock leader election, singleton workers & heartbeat healthchecks.
+28. [`28-public-api-keys-and-developer-platform.md`](./saas-master-builder/references/28-public-api-keys-and-developer-platform.md) — B2B developer platform API keys, SHA-256 hashing, fine-grained scopes & key rotation.
+29. [`29-design-systems-and-premium-user-experience.md`](./saas-master-builder/references/29-design-systems-and-premium-user-experience.md) — Linear/Vercel grade design tokens, 4 canonical UI states & WCAG 2.1 AA accessibility.
+30. [`30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md`](./saas-master-builder/references/30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md) — Lawful tenant offboarding, PII anonymization, S3 purge & Certificates of Destruction.
 
 ---
 

@@ -49,6 +49,7 @@
 When working on a SaaS project, proactively use the built-in CLI:
 - Run static security audit: `npx saas-master audit`
 - Verify task completion evidence: `npx saas-master check-evidence`
-- Scaffold production blueprints: `npx saas-master scaffold [rls|stripe|rate-limit|licensing|audit|ai-gateway|updater|invoice-print|enterprise-sso|all]`
+- Scaffold production blueprints: `npx saas-master scaffold [rls|stripe|rate-limit|licensing|audit|ai-gateway|updater|invoice-print|enterprise-sso|webhooks|storage|feature-flags|notifications|async-export|observability|search|scheduler|api-keys|design-system|gdpr-offboarding|all]`
+- Compile unified architecture handbook: `npx saas-master docs`
 - Generate client sign-off report: `npx saas-master report "<Project Name>"`
 - Run full system diagnosis: `npx saas-master doctor`
