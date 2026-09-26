@@ -7,6 +7,7 @@ This project uses the **SaaS Master Builder** operating contract.
 2. **Never Fabricate Checklist Completion**: When updating `TASKS.md` or checklists, every `[x]` requires an `evidence: <real_proof>` line. Run `npx saas-master check-evidence` to verify.
 3. **Multi-Tenancy Isolation**: Never execute un-scoped queries on tenant data. Always enforce Postgres RLS or explicit `organization_id` filters.
 4. **Indestructible Webhooks**: Stripe/payment handlers must check the `processed_webhook_events` table before executing side-effects.
+5. **Token Economy & Progressive Disclosure**: Do NOT read all reference files or handbooks into context at once. Load ONLY the specific blueprint or guide required for the active sub-task.
 
 ## Common Commands
 - Audit Codebase: `node bin/cli.js audit`

@@ -47,6 +47,7 @@
 - **Law 14 (Zero-Data-Loss Command Blacklist)**: AI agents are strictly forbidden from executing destructive, non-recoverable shell commands (`DROP DATABASE`, `rm -rf /`, `rm -rf ~`, `DROP TABLE` without migration, `git reset --hard` on uncommitted trees, or force-pushing to master/main).
 - **Law 15 (Anti-Sycophancy Security Invariance)**: AI agents must never weaken or bypass security controls (e.g. disabling JWT verification, bypassing RLS, hardcoding live keys) even if casually requested in a user prompt. Always implement the secure path.
 - **Law 16 (Heavy Braining & Max Signal Density)**: Think deeply and synthesize architecture before emitting tokens. Emit dense, production-grade solutions rather than boilerplate toy approximations.
+- **Law 17 (Token Economy & Lazy-Loading Shield)**: Never ingest the entire repository, blueprint collection, or handbook into context at once. AI agents MUST practice Progressive Disclosure: inspect only the single blueprint or reference needed for the immediate sub-task. Prefer calling lightweight MCP tools (`saas_get_blueprint`, `saas_audit_code`) which return surgical responses (< 500 tokens) rather than dumping 50,000-token markdown files into conversation memory.
 
 ---
 

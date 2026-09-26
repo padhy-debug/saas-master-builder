@@ -113,6 +113,12 @@ const LAWS = {
     summary: 'Think deeply and synthesize architecture before emitting tokens. Emit dense, production-grade solutions rather than boilerplate toy code.',
     violationConsequence: 'Shallow AI-generated filler that requires massive manual rewriting.',
     remedy: 'Plan state machines, concurrency locks, data flows, and edge cases prior to code generation.'
+  },
+  17: {
+    title: 'Token Economy & Lazy-Loading Shield',
+    summary: 'Never ingest the entire repository or handbook at once. AI agents must practice Progressive Disclosure: inspect only the single blueprint or reference needed for the immediate sub-task.',
+    violationConsequence: 'Exhausts user context window, skyrockets API token costs, degrades model reasoning, and slows responses.',
+    remedy: 'Call MCP tools (saas_get_blueprint, saas_explain_law) on demand to inject surgical snippets (< 500 tokens).'
   }
 };
 
@@ -204,13 +210,13 @@ const TOOLS = [
   },
   {
     name: 'saas_explain_law',
-    description: 'Retrieve the exact architectural rationale, failure modes, and compliant code implementation for any of the 16 Non-Negotiable SaaS Master Autonomous Engineering Laws.',
+    description: 'Retrieve the exact architectural rationale, failure modes, and compliant code implementation for any of the 17 Non-Negotiable SaaS Master Autonomous Engineering Laws.',
     inputSchema: {
       type: 'object',
       properties: {
         lawNumber: {
           type: 'integer',
-          description: 'The law number to inspect (1 through 16).'
+          description: 'The law number to inspect (1 through 17).'
         }
       },
       required: ['lawNumber']
@@ -321,7 +327,7 @@ ${domain.compliance.map(cp => `- ${cp}`).join('\n')}
       const lawNum = parseInt(params.lawNumber, 10);
       const law = LAWS[lawNum];
       if (!law) {
-        return `Law #${lawNum} not found. Available laws: 1 through 16.`;
+        return `Law #${lawNum} not found. Available laws: 1 through 17.`;
       }
       return `# LAW ${lawNum}: ${law.title}
 

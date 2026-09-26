@@ -26,3 +26,8 @@ When writing code for this project, you MUST strictly adhere to the following pr
    - For auto-updates, avoid in-place binary overwrite. Use dual-slot staging with a detached trampoline process.
    - For fiscal documents (invoices, lab reports), use zero-gap PostgreSQL sequences (`get_next_fiscal_number`).
    - Use `node bin/cli.js scaffold <blueprint>` (rls, stripe, rate-limit, licensing, audit, ai-gateway, updater, invoice-print, enterprise-sso, all).
+
+6. TOKEN ECONOMY & LAZY LOADING SHIELD:
+   - Do NOT recursively read or ingest the entire repository, all reference files, or the full architecture handbook into context.
+   - Practice Progressive Disclosure: load ONLY the single blueprint or reference needed for the immediate sub-task.
+   - When available, call SaaS Master MCP tools (`saas_get_blueprint`, `saas_explain_law`) to fetch surgical code snippets (< 500 tokens) on demand.
