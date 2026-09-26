@@ -24,8 +24,14 @@ jobs:
       - name: Verify Anti-Hallucination Evidence Gate
         run: node bin/cli.js check-evidence
 
+      - name: Run Autonomous E2E Subsystems Verification
+        run: node bin/cli.js verify
+
       - name: Run SaaS Security & Multi-Tenancy Static Audit
         run: node bin/cli.js audit
+
+      - name: Run Global SaaS Benchmark Audit
+        run: node bin/cli.js benchmark
 
       - name: Run Full Doctor Diagnostics
         run: node bin/cli.js doctor
