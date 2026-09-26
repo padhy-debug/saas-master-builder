@@ -268,14 +268,23 @@ npx saas-master hooks
 npx saas-master guard
 ```
 
-### Step 7: Compile Master Architecture Handbook
+### Step 8: Autonomous System Verification & Local Event Simulator
 ```bash
-# Generates complete 32-chapter unified architecture book:
-npx saas-master docs
+# Verify all 6 core subsystems in 4ms (RLS, Stripe, Ed25519, Audit Hash, Gapless sequence):
+npx saas-master verify
+
+# Run local mock event simulator (test Stripe webhooks, licensing, SSO without external keys):
+npx saas-master simulate all
+
+# Run 60-second guided executive architectural tour:
+npx saas-master demo
 ```
 
-### Step 8: Run Doctor Diagnostics & Global Benchmark
+### Step 9: Compile Master Architecture Handbook & Run Diagnostics
 ```bash
+# Generates complete 33-chapter unified architecture book:
+npx saas-master docs
+
 # Verifies architecture, evidence integrity, and security gates:
 npx saas-master doctor
 npx saas-master benchmark
@@ -350,7 +359,8 @@ Deep-dive engineering guides located in `saas-master-builder/references/`:
 29. [`29-design-systems-and-premium-user-experience.md`](./saas-master-builder/references/29-design-systems-and-premium-user-experience.md) — Linear/Vercel grade design tokens, 4 canonical UI states & WCAG 2.1 AA accessibility.
 30. [`30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md`](./saas-master-builder/references/30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md) — Lawful tenant offboarding, PII anonymization, S3 purge & Certificates of Destruction.
 31. [`31-deep-dive-domain-expansion-and-enterprise-productization.md`](./saas-master-builder/references/31-deep-dive-domain-expansion-and-enterprise-productization.md) — Deep-dive domain expansion, 8 non-negotiable core modules, and eliminating toy MVPs.
-32. [`32-agentic-governance-surgical-editing-and-mcp.md`](./saas-master-builder/references/32-agentic-governance-surgical-editing-and-mcp.md) — The 16 Constitutional Laws, Surgical Scope (MVD), 3-Strike Circuit Breaker, Zero Data Loss & Native MCP Server.
+32. [`32-agentic-governance-surgical-editing-and-mcp.md`](./saas-master-builder/references/32-agentic-governance-surgical-editing-and-mcp.md) — The 17 Constitutional Laws, Surgical Scope (MVD), 3-Strike Circuit Breaker, Zero Data Loss & Native MCP Server.
+33. [`33-fullstack-production-app-shell-and-local-sandbox.md`](./saas-master-builder/references/33-fullstack-production-app-shell-and-local-sandbox.md) — Full-stack multi-tenant dashboard app shell, 4 canonical UI states & local webhook sandbox simulator.
 
 ---
 

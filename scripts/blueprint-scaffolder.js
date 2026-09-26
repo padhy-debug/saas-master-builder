@@ -106,6 +106,11 @@ const BLUEPRINT_MAP = {
     source: 'blueprints/20-gdpr-tenant-offboarding',
     dest: 'src/lib/gdpr-offboarding',
     description: 'GDPR/CCPA tenant offboarding, PII anonymization, S3 purge & Certificate of Destruction'
+  },
+  'app-shell': {
+    source: 'blueprints/21-fullstack-app-shell',
+    dest: 'src/components/dashboard',
+    description: 'Full-stack multi-tenant dashboard shell with tenant switcher, live KPIs & Stripe upgrade card'
   }
 };
 

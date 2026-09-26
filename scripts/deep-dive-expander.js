@@ -388,4 +388,4 @@ Build with fearless innovation on top of unbreakable security foundations.
   return { domain, specFile: fullOutputPath };
 }
 
-module.exports = { expandIdea, matchDomain, DOMAIN_KNOWLEDGE_BASE };
+module.exports = { expandIdea, matchDomain, DOMAIN_KNOWLEDGE_BASE, DOMAIN_KNOWLEDGE: DOMAIN_KNOWLEDGE_BASE };

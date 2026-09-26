@@ -51,7 +51,8 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 | `references/29-design-systems-and-premium-user-experience.md` | Linear/Vercel grade design tokens, 4 canonical UI states & WCAG 2.1 AA accessibility |
 | `references/30-gdpr-ccpa-tenant-offboarding-and-data-scrubbing.md` | Lawful tenant offboarding, PII anonymization, S3 purge & Certificates of Destruction |
 | `references/31-deep-dive-domain-expansion-and-enterprise-productization.md` | Deep-dive domain expansion, 8 non-negotiable core modules, and eliminating toy MVPs |
-| `references/32-agentic-governance-surgical-editing-and-mcp.md` | The 16 Constitutional Laws, Surgical Scope (MVD), 3-Strike Circuit Breaker, Zero Data Loss & Native MCP Server |
+| `references/32-agentic-governance-surgical-editing-and-mcp.md` | The 17 Constitutional Laws, Surgical Scope (MVD), 3-Strike Circuit Breaker, Zero Data Loss & Native MCP Server |
+| `references/33-fullstack-production-app-shell-and-local-sandbox.md` | Full-stack multi-tenant dashboard app shell, 4 canonical UI states & local webhook sandbox simulator |
 
 ## Production Blueprints (`blueprints/`)
 
@@ -75,6 +76,7 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 - `blueprints/18-api-key-management/` — B2B developer platform API key provisioning, SHA-256 hashing, and scope verification.
 - `blueprints/19-saas-design-system-tokens/` — Linear/Vercel grade CSS tokens, dark/light themes, and UI state components.
 - `blueprints/20-gdpr-tenant-offboarding/` — GDPR/CCPA tenant offboarding engine, cascade PII scrubbing, and Certificate of Destruction.
+- `blueprints/21-fullstack-app-shell/` — Full-stack multi-tenant dashboard shell with tenant switcher, live KPIs, and Stripe billing card.
 
 ## Project Templates (`templates/`)
 
@@ -91,7 +93,10 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 
 - `npx saas-master mcp`: Starts native Model Context Protocol (MCP) server for Cursor, Claude Code, Windsurf & Antigravity.
 - `npx saas-master hooks`: Installs deterministic Git verification gates (`.git/hooks/pre-commit` & `pre-push`).
-- `npx saas-master init <name>`: Scaffolds a complete full-stack SaaS project with all 20 production blueprints.
+- `npx saas-master verify`: Runs autonomous end-to-end verification across all 6 core SaaS subsystems (4ms).
+- `npx saas-master simulate [type]`: Local mock event sandbox (stripe, license, sso, print, all).
+- `npx saas-master demo`: 60-second interactive guided architectural tour.
+- `npx saas-master init <name>`: Scaffolds a complete full-stack SaaS project with all 21 production blueprints.
 - `npx saas-master deep-dive <idea>`: Expands any generic idea into an enterprise spec & architecture contract (stops toy MVPs).
 - `npx saas-master prompt <task>`: Compiles natural language into a God-Tier AI prompt with deep domain intelligence.
 - `npx saas-master guard`: Real-time AI agent code scanner (detects the 10 Deadly AI Coding Sins).
@@ -99,6 +104,6 @@ It exists to solve a critical failure mode: AI agents (or rushed developers) dec
 - `npx saas-master audit`: Scans codebase for cross-tenant leaks, hardcoded secrets, and missing webhook idempotency.
 - `npx saas-master check-evidence`: Audits `TASKS.md` to ensure zero checklist items are checked without proof.
 - `npx saas-master scaffold <name>`: Injects production blueprints directly into your codebase.
-- `npx saas-master docs`: Compiles the unified 32-chapter `SAAS_ARCHITECTURE_HANDBOOK.md`.
+- `npx saas-master docs`: Compiles the unified 33-chapter `SAAS_ARCHITECTURE_HANDBOOK.md`.
 - `npx saas-master report "<Client Name>"`: Generates an executive client sign-off report.
 - `npx saas-master doctor`: Full system diagnosis across security, evidence, and multi-tenancy.

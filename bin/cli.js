@@ -17,6 +17,9 @@ const { runAgentGuard } = require('../scripts/agent-diff-guard');
 const { runBenchmark } = require('../scripts/benchmark-auditor');
 const { expandIdea } = require('../scripts/deep-dive-expander');
 const { installGitHooks } = require('../scripts/install-hooks');
+const { runSimulator } = require('../scripts/mock-sandbox-runner');
+const { runE2eVerification } = require('../scripts/e2e-verifier');
+const { runDemoTour } = require('../scripts/demo-tour');
 
 const args = process.argv.slice(2);
 const command = args[0] || 'help';
@@ -259,6 +262,28 @@ Next steps:
     break;
   }
 
+  case 'simulate':
+  case 'sandbox': {
+    const type = args[1] || 'all';
+    const success = runSimulator(type);
+    process.exit(success ? 0 : 1);
+    break;
+  }
+
+  case 'verify':
+  case 'test': {
+    const success = runE2eVerification();
+    process.exit(success ? 0 : 1);
+    break;
+  }
+
+  case 'demo':
+  case 'tour': {
+    const success = runDemoTour();
+    process.exit(success ? 0 : 1);
+    break;
+  }
+
   case 'help':
   default: {
     console.log(`
@@ -267,15 +292,18 @@ Usage: saas-master <command> [options]
 Commands:
   mcp                      Start native Model Context Protocol (MCP) server for Cursor, Claude Code & IDEs
   hooks [dir]              Install deterministic Git verification gates (pre-commit & pre-push)
-  init [projectName]       Scaffold a brand new complete full-stack SaaS project with all 20 blueprints
+  verify                   Run autonomous end-to-end verification across all 6 core SaaS subsystems
+  simulate [type]          Run local sandbox simulator (stripe, license, sso, print, all)
+  demo                     Run 60-second interactive guided architectural tour
+  init [projectName]       Scaffold a brand new complete full-stack SaaS project with all 21 blueprints
   deep-dive <idea>         Expand generic idea into deep enterprise spec & architecture contract (stops toy MVPs)
   prompt <task>            Compile natural language intent into a God-Tier AI prompt for Claude/Cursor
   guard [dir]              Real-time AI agent code scanner (detects the 10 Deadly AI Coding Sins)
   benchmark                Run unbiased empirical benchmark comparing against global SaaS standards
   audit [dir]              Run static analysis for multi-tenancy leaks & security gaps
   check-evidence [dir]     Enforce Anti-Hallucination verification gate on TASKS.md
-  scaffold <blueprint>     Copy specific blueprints (rls, stripe, rate-limit, licensing, audit, ai-gateway, updater, invoice-print, enterprise-sso, webhooks, storage, feature-flags, notifications, async-export, observability, search, scheduler, api-keys, design-system, gdpr-offboarding, all)
-  docs [outputDir]         Generate unified SAAS_ARCHITECTURE_HANDBOOK.md (32 chapters)
+  scaffold <blueprint>     Copy specific blueprints (rls, stripe, rate-limit, licensing, audit, ai-gateway, updater, invoice-print, enterprise-sso, webhooks, storage, feature-flags, notifications, async-export, observability, search, scheduler, api-keys, design-system, gdpr-offboarding, app-shell, all)
+  docs [outputDir]         Generate unified SAAS_ARCHITECTURE_HANDBOOK.md (33 chapters)
   report [projectName]     Generate executive Client Delivery & Handoff Sign-off Report
   doctor                   Run full system diagnosis across evidence, security & architecture
   help                     Show this help screen
@@ -283,6 +311,9 @@ Commands:
 Examples:
   npx saas-master mcp
   npx saas-master hooks
+  npx saas-master verify
+  npx saas-master simulate stripe
+  npx saas-master demo
   npx saas-master deep-dive "SaaS platform for private dental clinics"
   npx saas-master prompt "build clinic booking with double-booking lock and payment"
   npx saas-master guard
