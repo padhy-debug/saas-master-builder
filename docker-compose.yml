@@ -27,6 +27,9 @@ services:
       - ./blueprints/05-rbac-audit-trail/audit-schema.sql:/docker-entrypoint-initdb.d/03-audit.sql:ro
       - ./blueprints/08-universal-print-and-invoice-engine/concurrency-safe-invoice-numbering.sql:/docker-entrypoint-initdb.d/04-fiscal.sql:ro
       - ./blueprints/10-outbound-webhooks-engine/webhook-schema.sql:/docker-entrypoint-initdb.d/05-webhooks.sql:ro
+      - ./blueprints/16-universal-search-vector/hybrid-search.sql:/docker-entrypoint-initdb.d/06-search.sql:ro
+      - ./blueprints/18-api-key-management/api-key-schema.sql:/docker-entrypoint-initdb.d/07-api-keys.sql:ro
+      - ./blueprints/20-gdpr-tenant-offboarding/gdpr-scrubber.sql:/docker-entrypoint-initdb.d/08-gdpr.sql:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d saas_master_db"]
       interval: 5s
