@@ -93,6 +93,16 @@ ${domain.nonNegotiableModules.map(m => `   - ${m}`).join('\n')}
 ${domain.hiddenFailureModes.map(e => `   - ${e}`).join('\n')}
 </DOMAIN_ENTERPRISE_REQUIREMENTS>
 
+<FRONTIER_INNOVATION_AND_UNLIMITED_CREATIVITY>
+CRITICAL INSTRUCTION (Law 11 - The Uncapped Ceiling Principle):
+The domain requirements and blueprints above represent the engineering SAFETY FLOOR, NEVER A CEILING OR CREATIVE BOUNDARY!
+You must NOT limit yourself only to these items. Use your maximum reasoning, product intuition, and deep architectural creativity to:
+1. Proactively propose and implement category-defining killer features that give this product an unfair competitive advantage.
+2. Design micro-interactions, intelligent predictive automations, and delight factors that make users say "Wow, this software feels like magic."
+3. Think 10 steps ahead: suggest viral growth loops, automated client reporting, smart AI co-pilots, and friction-free onboarding.
+Build with fearless innovation on top of unbreakable security foundations!
+</FRONTIER_INNOVATION_AND_UNLIMITED_CREATIVITY>
+
 <ARCHITECTURAL_CONSTRAINTS_AND_LAWS>
 You must strictly obey the SaaS Master Builder Engineering Laws:
 ${Array.from(matchedLaws).map((law, i) => `${i + 1}. ${law}`).join('\n')}

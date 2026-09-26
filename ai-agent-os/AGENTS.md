@@ -41,6 +41,7 @@
 - **Law 8 (Fiscal Sequences)**: Never generate invoice, order, or lab report numbers using serial IDs or UUIDs that can leave gaps. Use row-level locked PostgreSQL sequence functions (`get_next_fiscal_number`) to maintain gapless fiscal compliance.
 - **Law 9 (Superadmin Impersonation)**: Superadmins must NEVER bypass auth via backdoors or master passwords. Impersonation sessions MUST use asymmetric ephemeral JWTs with ticket ID justification and immutable audit logging.
 - **Law 10 (100-Year Architecture)**: Never make breaking changes to production APIs. Adhere to additive-only schema evolution, 12-month deprecation periods, and tolerant JSON readers.
+- **Law 11 (The Uncapped Ceiling Principle)**: Foundational blueprints and security laws represent the engineering safety FLOOR, NEVER a creative CEILING. While tenant isolation, payment idempotency, and evidence verification are strictly non-negotiable, you MUST fearlessly innovate on business logic, intelligent automations, and magical UX that give the product an unfair competitive advantage.
 
 ---
 
