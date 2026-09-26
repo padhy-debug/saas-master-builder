@@ -12,6 +12,9 @@ const { checkEvidence } = require('../scripts/evidence-checker');
 const { scaffold, BLUEPRINT_MAP } = require('../scripts/blueprint-scaffolder');
 const { generateClientReport } = require('../scripts/client-report');
 const { generateHandbook } = require('../scripts/docs-generator');
+const { compilePrompt } = require('../scripts/ai-prompt-compiler');
+const { runAgentGuard } = require('../scripts/agent-diff-guard');
+const { runBenchmark } = require('../scripts/benchmark-auditor');
 
 const args = process.argv.slice(2);
 const command = args[0] || 'help';
@@ -177,6 +180,28 @@ Next steps:
     break;
   }
 
+  case 'prompt': {
+    const taskDescription = args.slice(1).join(' ');
+    const repoRootDir = path.resolve(__dirname, '..');
+    compilePrompt(taskDescription, repoRootDir);
+    process.exit(0);
+    break;
+  }
+
+  case 'guard': {
+    const targetDir = args[1] ? path.resolve(args[1]) : process.cwd();
+    const result = runAgentGuard(targetDir);
+    process.exit(result.violations.length === 0 ? 0 : 1);
+    break;
+  }
+
+  case 'benchmark': {
+    const repoRootDir = path.resolve(__dirname, '..');
+    runBenchmark(repoRootDir);
+    process.exit(0);
+    break;
+  }
+
   case 'doctor': {
     console.log('🩺 [Doctor] Running comprehensive SaaS health & anti-hallucination check...\n');
     let hasErrors = false;
@@ -216,6 +241,9 @@ Usage: saas-master <command> [options]
 
 Commands:
   init [projectName]       Scaffold a brand new complete full-stack SaaS project with all 20 blueprints
+  prompt <task>            Compile natural language intent into a God-Tier AI prompt for Claude/Cursor
+  guard [dir]              Real-time AI agent code scanner (detects the 10 Deadly AI Coding Sins)
+  benchmark                Run unbiased empirical benchmark comparing against global SaaS standards
   audit [dir]              Run static analysis for multi-tenancy leaks & security gaps
   check-evidence [dir]     Enforce Anti-Hallucination verification gate on TASKS.md
   scaffold <blueprint>     Copy specific blueprints (rls, stripe, rate-limit, licensing, audit, ai-gateway, updater, invoice-print, enterprise-sso, webhooks, storage, feature-flags, notifications, async-export, observability, search, scheduler, api-keys, design-system, gdpr-offboarding, all)
@@ -225,6 +253,9 @@ Commands:
   help                     Show this help screen
 
 Examples:
+  npx saas-master prompt "Add team member invite flow with role-based permissions"
+  npx saas-master guard
+  npx saas-master benchmark
   npx saas-master init my-saas-platform
   npx saas-master audit
   npx saas-master check-evidence
