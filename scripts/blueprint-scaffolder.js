@@ -76,6 +76,11 @@ const BLUEPRINT_MAP = {
     source: 'blueprints/14-async-export-data-pipeline',
     dest: 'src/lib/async-exports',
     description: 'High-volume streaming CSV data export worker with Excel injection sanitization'
+  },
+  'observability': {
+    source: 'blueprints/15-observability-health-probes',
+    dest: 'src/lib/observability',
+    description: 'Production /healthz & /readyz probes, memory warning, and correlation tracing'
   }
 };
 

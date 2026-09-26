@@ -90,6 +90,77 @@ switch (command) {
     break;
   }
 
+  case 'init': {
+    const projectName = args[1] || 'my-saas-app';
+    const targetDir = path.resolve(process.cwd(), projectName);
+    const repoRootDir = path.resolve(__dirname, '..');
+
+    console.log(`🚀 [SaaS Master Init] Initializing full-stack SaaS project at: ${targetDir}\n`);
+
+    if (!fs.existsSync(targetDir)) {
+      fs.mkdirSync(targetDir, { recursive: true });
+    }
+
+    // 1. Copy root configuration & docker files
+    const rootFilesToCopy = ['.env.example', 'docker-compose.yml', '.gitignore', 'AGENTS.md', 'CLAUDE.md', '.cursorrules', '.windsurfrules'];
+    rootFilesToCopy.forEach(file => {
+      const src = path.join(repoRootDir, file);
+      const dest = path.join(targetDir, file);
+      if (fs.existsSync(src)) {
+        fs.copyFileSync(src, dest);
+        console.log(`  ✓ Created: ${file}`);
+      }
+    });
+
+    // 2. Copy templates folder
+    const templatesSrc = path.join(repoRootDir, 'saas-master-builder', 'templates');
+    const templatesDest = path.join(targetDir, 'templates');
+    if (fs.existsSync(templatesSrc)) {
+      if (!fs.existsSync(templatesDest)) fs.mkdirSync(templatesDest, { recursive: true });
+      fs.readdirSync(templatesSrc).forEach(tFile => {
+        fs.copyFileSync(path.join(templatesSrc, tFile), path.join(templatesDest, tFile));
+        console.log(`  ✓ Created: templates/${tFile}`);
+      });
+    }
+
+    // 3. Create target package.json if not present
+    const targetPkgJson = path.join(targetDir, 'package.json');
+    if (!fs.existsSync(targetPkgJson)) {
+      const pkgContent = {
+        name: projectName.toLowerCase().replace(/[^a-z0-9_-]/g, '-'),
+        version: '0.1.0',
+        private: true,
+        scripts: {
+          "dev": "echo 'Configure your web/backend framework (Next.js/Fastify)'",
+          "audit": "saas-master audit",
+          "check-evidence": "saas-master check-evidence",
+          "doctor": "saas-master doctor"
+        },
+        dependencies: {
+          "saas-master-builder": "^1.0.0"
+        }
+      };
+      fs.writeFileSync(targetPkgJson, JSON.stringify(pkgContent, null, 2), 'utf-8');
+      console.log(`  ✓ Created: package.json`);
+    }
+
+    // 4. Scaffold all blueprints into target
+    console.log('\n📦 Scaffolding all 15 production blueprints into src/lib/...');
+    scaffold('all', targetDir, repoRootDir);
+
+    console.log(`
+🎉 [SUCCESS] SaaS Project '${projectName}' successfully created!
+
+Next steps:
+  1. cd ${projectName}
+  2. cp .env.example .env (and configure secrets)
+  3. docker compose up -d (starts Postgres RLS, Redis, MinIO & Mailpit)
+  4. Start building with zero hallucinations!
+`);
+    process.exit(0);
+    break;
+  }
+
   case 'report': {
     const projectName = args[1] || 'Production SaaS Platform';
     generateClientReport(process.cwd(), projectName);
@@ -135,18 +206,19 @@ switch (command) {
 Usage: saas-master <command> [options]
 
 Commands:
+  init [projectName]       Scaffold a brand new complete full-stack SaaS project with all 15 blueprints
   audit [dir]              Run static analysis for multi-tenancy leaks & security gaps
   check-evidence [dir]     Enforce Anti-Hallucination verification gate on TASKS.md
-  scaffold <blueprint>     Copy battle-tested blueprints (rls, stripe, rate-limit, licensing, audit, ai-gateway, all)
+  scaffold <blueprint>     Copy specific blueprints (rls, stripe, rate-limit, licensing, audit, ai-gateway, updater, invoice-print, enterprise-sso, webhooks, storage, feature-flags, notifications, async-export, observability, all)
   report [projectName]     Generate executive Client Delivery & Handoff Sign-off Report
   doctor                   Run full system diagnosis across evidence, security & architecture
   help                     Show this help screen
 
 Examples:
+  npx saas-master init my-saas-platform
   npx saas-master audit
   npx saas-master check-evidence
-  npx saas-master scaffold rls
-  npx saas-master scaffold stripe
+  npx saas-master scaffold all
   npx saas-master report "Acme Analytics SaaS"
   npx saas-master doctor
 `);

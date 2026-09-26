@@ -1,0 +1,31 @@
+name: SaaS Master CI & Anti-Hallucination Gate
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  verify:
+    name: Architecture, Security & Evidence Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Codebase
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Verify Anti-Hallucination Evidence Gate
+        run: node bin/cli.js check-evidence
+
+      - name: Run SaaS Security & Multi-Tenancy Static Audit
+        run: node bin/cli.js audit
+
+      - name: Run Full Doctor Diagnostics
+        run: node bin/cli.js doctor

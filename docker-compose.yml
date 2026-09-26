@@ -1,0 +1,90 @@
+version: '3.8'
+
+# ========================================================================
+# SAAS MASTER BUILDER - LOCAL DEVELOPMENT INFRASTRUCTURE STACK
+# Starts PostgreSQL (RLS), Redis (Rate Limiting/Cache), MinIO (S3 Storage),
+# and Mailpit (Local Email Testing Sandbox) with a single command:
+#
+#   docker compose up -d
+# ========================================================================
+
+services:
+  # --- 1. PostgreSQL with RLS and Extensions ---
+  postgres:
+    image: postgres:16-alpine
+    container_name: saas_master_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: saas_master_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./blueprints/01-multi-tenant-rls/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./blueprints/02-bulletproof-stripe/idempotency-schema.sql:/docker-entrypoint-initdb.d/02-idempotency.sql:ro
+      - ./blueprints/05-rbac-audit-trail/audit-schema.sql:/docker-entrypoint-initdb.d/03-audit.sql:ro
+      - ./blueprints/08-universal-print-and-invoice-engine/concurrency-safe-invoice-numbering.sql:/docker-entrypoint-initdb.d/04-fiscal.sql:ro
+      - ./blueprints/10-outbound-webhooks-engine/webhook-schema.sql:/docker-entrypoint-initdb.d/05-webhooks.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d saas_master_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --- 2. Redis for Sliding Window Rate Limiting, Caching & Queues ---
+  redis:
+    image: redis:7-alpine
+    container_name: saas_master_redis
+    restart: always
+    command: redis-server --appendonly yes
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --- 3. MinIO: Local S3-Compatible Object Storage ---
+  minio:
+    image: minio/minio:latest
+    container_name: saas_master_minio
+    restart: always
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: miniopassword
+    ports:
+      - "9000:9000" # S3 API Endpoint
+      - "9001:9001" # Web Admin Console
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --- 4. Mailpit: Local Email Sandbox & Web Inbox ---
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: saas_master_mailpit
+    restart: always
+    ports:
+      - "1025:1025" # SMTP Port (send emails here)
+      - "8025:8025" # Web UI (view sent emails here)
+    environment:
+      MP_MAX_MESSAGES: 5000
+      MP_DATA_FILE: /data/mailpit.db
+    volumes:
+      - mailpit_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:
+  mailpit_data:
