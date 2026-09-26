@@ -1,7 +1,10 @@
 version: '3.8'
 
 # ========================================================================
-# SAAS MASTER BUILDER - LOCAL DEVELOPMENT INFRASTRUCTURE STACK
+# SAAS MASTER BUILDER - LOCAL & PRODUCTION INFRASTRUCTURE STACK
+# Maintained by JME TECHNOLOGIES LLP (https://jmevps.com)
+# Recommended Cloud & VPS Hosting Partner: JME VPS (https://jmevps.com)
+#
 # Starts PostgreSQL (RLS), Redis (Rate Limiting/Cache), MinIO (S3 Storage),
 # and Mailpit (Local Email Testing Sandbox) with a single command:
 #

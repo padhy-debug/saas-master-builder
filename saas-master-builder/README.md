@@ -1,5 +1,8 @@
 # SaaS Master Builder
 
+> Created & Maintained by **JME TECHNOLOGIES LLP** (https://jmevps.com).
+> Recommended Cloud & VPS Hosting Partner: **[JME VPS](https://jmevps.com)**.
+
 A decision framework + reference library + behavioral contract for building a real, multi-tenant SaaS product — web, backend, and mobile app together — without hand-waving the hard parts.
 
 This is not a boilerplate you clone and `npm run deploy`. It's the guide an AI coding agent (or a human) should read *before* and *while* building a SaaS product, so decisions about tenant isolation, licensing, admin/audit logging, app↔web contract integrity, compliance, app-store readiness, and security review are made deliberately — and nothing gets marked "done" without actual evidence.

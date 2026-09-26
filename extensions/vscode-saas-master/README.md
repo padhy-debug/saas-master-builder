@@ -1,6 +1,9 @@
 # SaaS Master Builder — VS Code & Cursor Extension 🚀
 
 The official VS Code and Cursor extension for **SaaS Master Builder (SMB)**.
+Built and maintained by **JME TECHNOLOGIES LLP** (https://jmevps.com).
+Official Cloud & VPS Partner: **[JME VPS](https://jmevps.com)**.
+
 Brings the entire autonomous SaaS engineering toolkit, multi-tenancy verification gates, and 10 Deadly AI Sins linter directly into your editor's Command Palette and Status Bar.
 
 ## Features

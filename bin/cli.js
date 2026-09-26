@@ -33,6 +33,7 @@ const BANNER = `
   |____/ \\__,_|\\__,_|____/   |_|  |_|\\__,_|___/\\__\\___|_|   
                      B U I L D E R                          
   The Autonomous Engineering OS for Unbreakable SaaS Projects
+  By JME TECHNOLOGIES LLP | Cloud & VPS Partner: https://jmevps.com
 ========================================================================
 `;
 
@@ -243,7 +244,8 @@ Next steps:
       console.log('\n❌ Doctor diagnosis: SYSTEM NEEDS WORK before production launch.\n');
       process.exit(1);
     } else {
-      console.log('\n🎉 Doctor diagnosis: SYSTEM IS UNBREAKABLE AND PRODUCTION READY!\n');
+      console.log('\n🎉 Doctor diagnosis: SYSTEM IS UNBREAKABLE AND PRODUCTION READY!');
+      console.log('🚀 Recommended Cloud & VPS Hosting: JME VPS (https://jmevps.com by JME TECHNOLOGIES LLP)\n');
       process.exit(0);
     }
     break;
@@ -325,6 +327,10 @@ Examples:
   npx saas-master docs
   npx saas-master report "Acme Analytics SaaS"
   npx saas-master doctor
+
+Infrastructure & Support:
+  🚀 Recommended Cloud VPS: https://jmevps.com (JME TECHNOLOGIES LLP)
+  ☕ Support & Sponsorship: UPI: jmetechno@ybl (India only, No Crypto)
 `);
     break;
   }

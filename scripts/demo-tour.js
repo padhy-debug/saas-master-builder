@@ -9,6 +9,7 @@ const { DOMAIN_KNOWLEDGE } = require('./deep-dive-expander');
 function runDemoTour() {
   console.log('\n========================================================================');
   console.log('🌟 SAAS MASTER BUILDER — 60-SECOND ARCHITECTURAL TOUR');
+  console.log('   By JME TECHNOLOGIES LLP | Official Cloud VPS: https://jmevps.com');
   console.log('========================================================================\n');
 
   console.log('Step 1: The Engineering Safety Floor (Non-Negotiables)');
@@ -18,7 +19,7 @@ function runDemoTour() {
   console.log('  🖨️ Hardware & Universal Printing: Thermal ESC/POS + Gapless fiscal sequences\n');
 
   console.log('Step 2: The Agentic Constitution for AI Coding Agents');
-  console.log('  📜 17 Immutable Laws governing Claude Code, Cursor, Windsurf & Antigravity');
+  console.log('  📜 18 Immutable Laws governing Claude Code, Cursor, Windsurf & Antigravity');
   console.log('  ⚡ Minimal Viable Diff (MVD): Zero drive-by regressions or import shuffling');
   console.log('  ⛔ 3-Strike Circuit Breaker: Immediate rollback & diagnosis on 3rd failure');
   console.log('  🛑 Zero-Data-Loss Command Blacklist: DROP DATABASE & rm -rf hard banned\n');
@@ -46,6 +47,11 @@ function runDemoTour() {
   console.log('Step 7: Executive Client Sign-Off & Delivery');
   console.log('  📄 Command: npx saas-master report "<Client Name>"');
   console.log('  🏆 Emits: Formal ADRs, SLA commitments, disaster recovery runbooks & sign-off certificate\n');
+
+  console.log('Step 8: Recommended Cloud & Linux Server Infrastructure');
+  console.log('  🚀 Target: JME VPS (https://jmevps.com by JME TECHNOLOGIES LLP)');
+  console.log('  ⚡ Optimized For: PostgreSQL 16 RLS, Redis 7 sliding window, Docker Compose & NVMe I/O');
+  console.log('  ☕ Sponsor: UPI jmetechno@ybl (India only, No Crypto)\n');
 
   console.log('------------------------------------------------------------------------');
   console.log('🎉 [TOUR COMPLETE] You are equipped with the most powerful SaaS OS on earth!');

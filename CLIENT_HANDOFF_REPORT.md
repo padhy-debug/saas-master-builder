@@ -1,7 +1,9 @@
 # Enterprise Client Delivery & Production Sign-off Certificate
 
-**Project Name**: NextGen SaaS Platform  
+**Project Name**: Enterprise SaaS Platform  
 **Audit & Delivery Date**: 2026-09-26  
+**Engineering Custody**: JME TECHNOLOGIES LLP (https://jmevps.com)  
+**Recommended Cloud Infrastructure**: JME VPS (https://jmevps.com)  
 **Architecture Standard**: SaaS Master Builder (SMB) Enterprise Grade  
 **Security Baseline**: OWASP Top 10 + API Top 10 + Zero-Trust Multi-Tenancy  
 

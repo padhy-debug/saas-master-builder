@@ -38,9 +38,19 @@
     "rate-limiting",
     "licensing",
     "rls",
-    "production-checklist"
+    "production-checklist",
+    "jme-vps",
+    "linux-server"
   ],
-  "author": "SaaS Master Builder Core Team",
+  "author": "JME TECHNOLOGIES LLP <support@jmevps.com> (https://jmevps.com)",
+  "homepage": "https://jmevps.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/padhy-debug/saas-master-builder.git"
+  },
+  "bugs": {
+    "url": "https://github.com/padhy-debug/saas-master-builder/issues"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=18.0.0"

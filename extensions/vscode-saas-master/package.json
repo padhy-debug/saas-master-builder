@@ -3,7 +3,13 @@
   "displayName": "SaaS Master Builder",
   "description": "Autonomous Engineering OS & Production Breakthrough Toolkit for Unbreakable Multi-Tenant SaaS.",
   "version": "1.0.0",
-  "publisher": "saas-master",
+  "publisher": "jme-technologies",
+  "author": "JME TECHNOLOGIES LLP <support@jmevps.com> (https://jmevps.com)",
+  "homepage": "https://jmevps.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/padhy-debug/saas-master-builder.git"
+  },
   "engines": {
     "vscode": "^1.75.0"
   },

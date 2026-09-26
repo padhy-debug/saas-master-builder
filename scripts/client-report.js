@@ -17,6 +17,8 @@ function generateClientReport(targetDir = process.cwd(), projectName = 'Enterpri
 
 **Project Name**: ${projectName}  
 **Audit & Delivery Date**: ${reportDate}  
+**Engineering Custody**: JME TECHNOLOGIES LLP (https://jmevps.com)  
+**Recommended Cloud Infrastructure**: JME VPS (https://jmevps.com)  
 **Architecture Standard**: SaaS Master Builder (SMB) Enterprise Grade  
 **Security Baseline**: OWASP Top 10 + API Top 10 + Zero-Trust Multi-Tenancy  
 

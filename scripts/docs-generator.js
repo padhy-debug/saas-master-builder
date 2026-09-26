@@ -18,7 +18,9 @@ function generateHandbook(repoRootDir, outputDir = process.cwd()) {
   const files = fs.readdirSync(referencesDir).filter(f => f.endsWith('.md')).sort();
 
   let handbookContent = `# SaaS Architecture & Engineering Master Handbook
-> Compiled by SaaS Master Builder OS. The single-source authority for unbreachable, multi-tenant enterprise SaaS applications.
+> Published by **JME TECHNOLOGIES LLP** (https://jmevps.com). Powered by SaaS Master Builder OS.
+> Recommended Cloud & Linux Server Infrastructure: **JME VPS** (https://jmevps.com)
+> Single-source authority for unbreachable, multi-tenant enterprise SaaS applications.
 
 ---
 
